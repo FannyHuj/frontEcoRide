@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="row g-3">
+                    <!-- Registration -->
+                    <div class="col-md-6">
+                        <label for="registration" class="form-label">Plaque d'immatriculation</label>
+                        <input type="text" [(ngModel)]="car.registration" name="registration" class="form-control" id="registration" placeholder="Ex : AA-123-BB">
+                    </div>
+                    <!-- First registration date -->
+                    <div class="col-md-6">
+                        <label for="firstRegistrationDate" class="form-label">Date 1ère immatriculation</label>
+                        <input type="date" [(ngModel)]="car.first_registration_date" name="first_registration_date" class="form-control" id="firstRegistrationDate">
+                    </div>
+                    <!-- Brand -->
+                    <div class="col-md-6">
+                        <label for="brand" class="form-label">Marque</label>
+                        <input type="text" [(ngModel)]="car.brand" name="brand" class="form-control" id="brand" placeholder="Ex : Toyota">
+                    </div>
+                    <!-- Model -->
+                    <div class="col-md-6">
+                        <label for="model" class="form-label">Modèle</label>
+                        <input type="text" [(ngModel)]="car.model" name="model" class="form-control" id="model" placeholder="Ex : RAV4">
+                    </div>
+                    <!-- Color -->
+                    <div class="col-md-6">
+                        <label for="color" class="form-label">Couleur</label>
+                        <input type="text" [(ngModel)]="car.color" name="color" class="form-control" id="color" placeholder="Ex : Bleu">
+                    </div>
+                     <!-- Energy -->
+                     <div class="col-md-6">
+                        <label for="energy" class="form-label">Energie</label>
+                        <input type="text" [(ngModel)]="car.energy" name="energy" class="form-control" id="energy" placeholder="Ex : Electrique">
+                    </div>
+                     <!-- Button -->
+                <button (click)="addNewCar()" type="submit" class="btn btn-success w-100">Ajouter le véhicule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

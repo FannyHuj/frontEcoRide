@@ -1,0 +1,36 @@
+.btn {
+    background-color: #59C362;
+    color:white;
+    
+}
+
+.barreRecherche {
+    padding-top: 4%;
+}
+
+.bi {
+    color:#719970;
+}
+
+.footerLeft {
+    padding-right: 200px !important; 
+}
+
+.barre {
+    background-color: #59C362;
+    opacity: 45;
+    height: 2px; 
+    width: 60px !important;
+}
+
+.card {
+    background-color: #59C362;
+    color: white;
+    padding: auto;
+    margin: 1em;
+}
+
+.detail {
+    background-color: white;
+    color:#59C362
+}

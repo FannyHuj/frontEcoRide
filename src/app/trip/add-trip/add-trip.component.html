@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <fieldset>
+                    <legend>Informations sur le trajet</legend>
+                <!-- Depart location -->
+                <div class="mb-3">
+                    <label for="departLocation" class="form-label">Point de départ</label>
+                    <input type="text" [(ngModel)]="trip.departLocation" name="departLocation" class="form-control" id="departLocation" placeholder="Entrez le point de départ">
+                </div>
+                 <!-- Depart date -->
+                 <div class="mb-3">
+                    <label for="departDate" class="form-label">Date de départ</label>
+                    <input type="date" [(ngModel)]="trip.departDate" name="departDate" class="form-control" id="departDate">
+                </div>
+                 <!-- Depart hour -->
+                 <div class="mb-3">
+                    <label for="departHour" class="form-label">Heure de départ</label>
+                    <input type="time" [(ngModel)]="trip.departHour" name="departHour" class="form-control" id="departHour">
+                </div>
+            </fieldset>
+                <!-- Arrival location -->
+                <fieldset>
+                    <legend>Destination</legend>
+                <div class="mb-3">
+                    <label for="arrivalLocation" class="form-label">Destination</label>
+                    <input type="text" [(ngModel)]="trip.arrivalLocation" name="arrivalLocation" class="form-control" id="arrivalLocation" placeholder="Entrez la destination">
+                </div>
+                  <!-- Arrival date -->
+                  <div class="mb-3">
+                    <label for="arrivalDate" class="form-label">Date d'arrivée</label>
+                    <input type="date" [(ngModel)]="trip.arrivalDate" name="arrivalDate" class="form-control" id="arrivalDate">
+                </div>
+                 <!-- Arrival hour -->
+                 <div class="mb-3">
+                    <label for="arrivalHour" class="form-label">Heure d'arrivée'</label>
+                    <input type="time" [(ngModel)]="trip.arrivalHour" name="arrivalHour" class="form-control" id="arrivalHour">
+                </div>
+                </fieldset>
+                   <!-- Place number -->
+                   <div class="mb-3">
+                    <label for="placeNumber" class="form-label">Places disponnibles</label>
+                    <input type="number" [(ngModel)]="trip.placeNumber" name="placeNumber" class="form-control" id="placeNumber">
+                </div>
+                <!-- Car -->
+                <div class="mb-3">
+                    <label for="car" class="form-label">Véhicule</label>
+                    <div class="d-flex align-items-center">
+                        <select class="form-select me-2" [(ngModel)]="trip.car.model" name="car" id="car">
+                            <option selected>Toyota RAV4</option>
+                            <option selected>BMW IX1</option>
+                            <option selected>Citroen C6</option>
+                            <option selected>Tesla modèle X</option>
+                        </select>
+                        <button type="button" class="btn btn-outline-secondary" routerLink="/AddNewCar">+ Nouveau véhicule</button>
+                    </div>
+                </div>
+                <!-- Price -->
+                <div class="mb-3">
+                    <label for="prixCredits" class="form-label">Prix en crédits</label>
+                    <input type="number" [(ngModel)]="trip.price" name=" price" class="form-control" id=" price" placeholder="Entrez le prix en crédits">
+                    <div class="form-text text-success">2 crédits seront prélevés par la plateforme</div>
+                </div>
+                <!-- Button -->
+                <button (click)="onClick()" type="submit" class="btn btn-success w-100">Publier le trajet</button>
+            </form>
+        </div>
+    </div>
+</div>

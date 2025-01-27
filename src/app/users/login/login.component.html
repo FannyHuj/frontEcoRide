@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="row g-3">
+                    <!-- Mail address -->
+                    <div class="col-md-6">
+                        <label for="mail" class="form-label">Addresse email</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
+                        <input type="mail" [(ngModel)]="user.mail" name="mail" class="form-control" id="mail">
+                    </div>
+                </div>
+                    <!-- Password-->
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-file-lock"></i></span>
+                            <input type="text" [(ngModel)]="user.password" name="password" class="form-control" id="password" placeholder="Saississez votre mot de passe">
+                        </div>
+                    </div>                    
+                     <!-- Button -->
+                <button (click)="signIn()" type="submit" class="btn btn-success w-100">Se connecter</button>
+                <p><b>Pas encore inscrit?</b>Créer un compte</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
