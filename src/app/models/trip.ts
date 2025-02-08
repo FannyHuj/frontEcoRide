@@ -2,6 +2,7 @@ import { Car } from "./car";
 import { User } from "./user";
 
 export interface Trip {
+    id:number;
     departDate:Date;
     departHour:Date;
     departLocation:string;

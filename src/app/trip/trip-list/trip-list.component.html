@@ -1,85 +1,4 @@
-<!-- Searchbar -->
-<form class="barreRecherche">
-    <div class="row">
-      <div class="col-md-3 mb-3">
-        <span><i class="bi bi-circle"></i> &nbsp;</span
-        ><label for="departure" class="form-label">Départ</label>
-        <input type="text" class="form-control" id="departure" />
-      </div>
-      <div class="col-md-3 mb-3">
-        <span><i class="bi bi-circle"></i> &nbsp;</span
-        ><label for="destination" class="form-label">Destination</label>
-        <input type="text" class="form-control" id="destination" />
-      </div>
-      <div class="col-md-2 mb-3">
-        <span><i class="bi bi-calendar-week"></i> &nbsp;</span
-        ><label for="date" class="form-label">Date</label>
-        <input type="text" class="form-control" id="date" />
-      </div>
-      <div class="col-md-2 mb-3">
-        <span><i class="bi bi-person"></i> &nbsp;</span
-        ><label for="passengers" class="form-label">Passager</label>
-        <input type="number" class="form-control" id="passengers" />
-      </div>
-  
-      <button type="submit" class="btn col-md-2 mb-6">Rechercher</button>
-      <br /><br />
-    </div>
-  </form>
-  <!-- Filters -->
-  <h4>Filtres</h4>
-  
-  <form class="row gx-3 gy-2 align-items-center">
-    <div class="col-sm-3">
-      <label class="visually-hidden" for="specificSizeInputGroupUsername">Durée du voyage</label>
-      <div class="input-group">
-        <div class="input-group-text">Durée du voyage</div>
-        <input
-          type="text"
-          class="form-control"
-          id="specificSizeInputGroupUsername"
-        />
-      </div>
-    </div>
-  
-    <div class="col-sm-3">
-      <label class="visually-hidden" for="specificSizeInputGroupUsername"
-        >Prix</label
-      >
-      <div class="input-group">
-        <div class="input-group-text">Prix maximum</div>
-        <input
-          type="text"
-          class="form-control"
-          id="specificSizeInputGroupUsername"
-        />
-      </div>
-    </div>
-  
-    <div class="col-sm-3">
-      <label class="visually-hidden" for="specificSizeSelect">Note du conducteur</label>
-  
-      <select class="form-select" id="specificSizeSelect">
-        <option selected>Note du conducteur</option>
-        <option value="1">1/5</option>
-        <option value="2">2/5</option>
-        <option value="3">3/5</option>
-        <option value="4">4/5</option>
-        <option value="5">5/5</option>
-      </select>
-    </div>
-    <div class="col-auto">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="autoSizingCheck2" />
-        <label class="form-check-label" for="autoSizingCheck2">Voyage electrique</label>
-      </div>
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary">Valider</button>
-    </div>
-  </form>
-  
-  <!-- Trips list -->
+<!-- Trips list -->
 
   <div class="card text-start" *ngFor="let trip of trips; let i=index">
     <div class="card-header">{{trip.departDate|date:'fullDate'}}</div>
@@ -119,7 +38,7 @@
       </div>
   
       <div class="float-end">
-        <span><button type="button" class="btn detail">Détails</button></span>
+        <span><button type="button" routerLink="/TripDetails" class="btn detail">Détails</button></span>
       </div>
     </div>
   </div>

@@ -10,11 +10,21 @@ export class TripService {
 
   constructor(private http:HttpClient) {}
   addTrip(trip:Trip):Observable<Trip>{
-    return this.http.post<Trip>('http://localhost:8000/trip',trip);
+    return this.http.post<Trip>('http://localhost:8000/api/trip',trip);
   }
 
   getAllTrip(): Observable<Trip[]> {
-    return this.http.get<Trip[]>('http://localhost:8000/all');
+    return this.http.get<Trip[]>('http://localhost:8000/api/tripList');
   }
+
+  searchTrip(trip: Trip): Observable<Trip[]> {
+    return this.http.post<Trip[]>('http://localhost:8000/api/searchTrip', trip);
+  }
+  
+
+  findOne(id:number): Observable<Trip> {
+    return this.http.get<Trip>(`http://localhost:8000/api/trip/${id}`);
+  }
+
 }
 

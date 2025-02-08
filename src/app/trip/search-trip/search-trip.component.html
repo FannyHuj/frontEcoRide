@@ -1,0 +1,151 @@
+<!-- Searchbar -->
+<form class="barreRecherche">
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <span><i class="bi bi-circle"></i> &nbsp;</span
+        ><label for="departure" class="form-label">Départ</label>
+        <input type="text" [(ngModel)]="trip.departLocation" name= "departLocation" class="form-control" id="departure" />
+      </div>
+      <div class="col-md-3 mb-3">
+        <span><i class="bi bi-circle"></i> &nbsp;</span
+        ><label for="destination" class="form-label">Destination</label>
+        <input type="text" [(ngModel)]="trip.arrivalLocation" name="arrivalLocation" class="form-control" id="destination" />
+      </div>
+      <div class="col-md-2 mb-3">
+        <span><i class="bi bi-calendar-week"></i> &nbsp;</span
+        ><label for="date" class="form-label">Date</label>
+        <input type="date" [(ngModel)]="trip.departDate" name="departDate" class="form-control" id="date" />
+      </div>
+      <div class="col-md-2 mb-3">
+        <span><i class="bi bi-person"></i> &nbsp;</span
+        ><label for="passengers" class="form-label">Passager</label>
+        <input type="number" [(ngModel)]="trip.placeNumber" name=" placeNumber" class="form-control" id="passengers" />
+      </div>
+  
+      <button (click)="onClick()" type="submit" class="btn btn-success w-100">Rechercher</button>
+      <br /><br />
+    </div>
+  </form>
+
+  <!-- Show trips available -->
+  
+  <h3 class="mb-4">Voyages disponibles :</h3>
+  <div class="row">
+    <div *ngFor="let trip of trips" class="col-12 mb-3">
+      <div class="card shadow-sm border-light hover-shadow">
+        <div class="card-body">
+          <!-- En-tête avec les villes -->
+          <div class="d-flex align-items-center mb-3">
+            <div class="flex-grow-1">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <h4 class="mb-0 text-dark">
+                    {{ trip.departLocation }}
+                    <i class="fas fa-arrow-right text-muted mx-2"></i>
+                    {{ trip.arrivalLocation }}
+                  </h4>
+                </div>
+                <span class="badge badge-success">{{ trip.price }} crédits</span>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Dates et heures -->
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-clock text-success mr-2"></i>
+                <div>
+                  <small class="text-muted">Départ</small>
+                  <div class="font-weight-bold">
+                    {{ trip.departDate | date: 'dd MMM' }} à {{ trip.departHour | date: 'HH:mm' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-flag-checkered text-success mr-2"></i>
+                <div>
+                  <small class="text-muted">Arrivée</small>
+                  <div class="font-weight-bold">
+                    {{ trip.arrivalDate | date: 'dd MMM' }} à {{ trip.arrivalHour | date: 'HH:mm' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Footer -->
+          <div class="d-flex justify-content-between align-items-center border-top pt-3">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-user-friends text-muted mr-2"></i>
+              <span class="text-muted">{{ trip.placeNumber }} places restantes</span>
+            </div>
+         
+            <button (click)="onSelectTrip(trip)">Voir le trajet</button> <!-- Envoie le trajet sélectionné -->
+            
+            <!-- Affichage des détails du trajet sélectionné -->
+            <app-trip-details *ngIf="selectedTrip" [trip]="selectedTrip"></app-trip-details>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Filters -->
+  <h4>Filtres</h4>
+  
+  <form class="row gx-3 gy-2 align-items-center">
+    <div class="col-sm-3">
+      <label class="visually-hidden" for="specificSizeInputGroupUsername">Durée du voyage</label>
+      <div class="input-group">
+        <div class="input-group-text">Durée du voyage</div>
+        <input
+          type="text"
+          class="form-control"
+          id="specificSizeInputGroupUsername"
+        />
+      </div>
+    </div>
+  
+    <div class="col-sm-3">
+      <label class="visually-hidden" for="specificSizeInputGroupUsername"
+        >Prix</label
+      >
+      <div class="input-group">
+        <div class="input-group-text">Prix maximum</div>
+        <input
+          type="text"
+          class="form-control"
+          id="specificSizeInputGroupUsername"
+        />
+      </div>
+    </div>
+  
+    <div class="col-sm-3">
+      <label class="visually-hidden" for="specificSizeSelect">Note du conducteur</label>
+  
+      <select class="form-select" id="specificSizeSelect">
+        <option selected>Note du conducteur</option>
+        <option value="1">1/5</option>
+        <option value="2">2/5</option>
+        <option value="3">3/5</option>
+        <option value="4">4/5</option>
+        <option value="5">5/5</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="autoSizingCheck2" />
+        <label class="form-check-label" for="autoSizingCheck2">Voyage electrique</label>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success">Valider</button>
+    </div>
+  </form>
+
+
+  

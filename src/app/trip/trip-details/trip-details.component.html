@@ -1,1 +1,7 @@
-<p>trip-details works!</p>
+<h2>Détails du Trajet</h2>
+<div *ngIf="trip">
+  <p><strong>Départ :</strong> {{ trip.departLocation }} à {{ trip.departHour }}</p>
+  <p><strong>Arrivée :</strong> {{ trip.arrivalLocation }} à {{ trip.arrivalHour }}</p>
+  <p><strong>Places disponibles :</strong> {{ trip.placeNumber }}</p>
+  <p><strong>Prix :</strong> {{ trip.price }}€</p>
+</div>

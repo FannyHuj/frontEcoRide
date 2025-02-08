@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { User } from '../../models/user';
+import { Login } from '../../models/login';
+import {AuthService} from '../../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +11,15 @@ import { User } from '../../models/user';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  user:User= {} as User;
-  
+  constructor(private auth:AuthService) {}
+  login:Login= {} as Login;
+  token:string|null =null;
+
   signIn(){
-    console.log(this.user.mail);
-    console.log(this.user.password);
+  
+    this.auth.login(this.login).subscribe({
+      next: auth => this.auth.setToken(auth.token),
+      error: err => console.error('Quelque chose s\'est mal passé :', err)
+    });
   }
 }
