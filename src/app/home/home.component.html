@@ -1,30 +1,93 @@
+<!-- Searchbar -->
 <form class="barreRecherche p-3 mt-4" style="background-color: #e0e0e0; border-radius: 10px;">
   <div class="row align-items-center">
     <div class="col-md-3 mb-3 d-flex align-items-center">
       <i class="bi bi-circle" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="departure" class="form-label ms-2 mb-0" style="color: #6c757d;">Départ</label>
-      <input type="text" class="form-control ms-2" id="departure" placeholder="Départ">
+      <input type="text" [(ngModel)]="trip.departLocation" name="departLocation" class="form-control ms-2" id="departure" placeholder="Départ">
     </div>
     <div class="col-md-3 mb-3 d-flex align-items-center">
       <i class="bi bi-circle" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="destination" class="form-label ms-2 mb-0" style="color: #6c757d;">Destination</label>
-      <input type="text" class="form-control ms-2" id="destination" placeholder="Destination">
+      <input type="text" [(ngModel)]="trip.arrivalLocation" name="arrivalLocation" class="form-control ms-2" id="destination" placeholder="Destination">
     </div>
     <div class="col-md-2 mb-3 d-flex align-items-center">
       <i class="bi bi-calendar-week" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="date" class="form-label ms-2 mb-0" style="color: #6c757d;">Date</label>
-      <input type="text" class="form-control ms-2" id="date" placeholder="Date">
+      <input type="date" [(ngModel)]="trip.departDate" name="departDate" class="form-control ms-2" id="date">
     </div>
     <div class="col-md-2 mb-3 d-flex align-items-center">
       <i class="bi bi-person" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="passengers" class="form-label ms-2 mb-0" style="color: #6c757d;">Passager</label>
-      <input type="number" class="form-control ms-2" id="passengers" placeholder="Passager">
+      <input type="number" [(ngModel)]="trip.placeNumber" name="placeNumber" class="form-control ms-2" id="passengers" placeholder="Passager">
     </div>
     <div class="col-md-2 mb-3 d-flex align-items-center">
-      <button type="submit" class="btn btn-success w-100" style="background-color: #4CAF50;">Rechercher</button>
+      <button (click)="onClick()" type="submit" class="btn btn-success w-100" style="background-color: #4CAF50;">Rechercher</button>
     </div>
   </div>
 </form>
+
+ <!-- Show trips available -->
+  
+ <div class="row">
+   <div *ngFor="let trip of trips" class="col-12 mb-3">
+     <div class="card shadow-sm border-light hover-shadow">
+       <div class="card-body">
+         <!-- En-tête avec les villes -->
+         <div class="d-flex align-items-center mb-3">
+           <div class="flex-grow-1">
+             <div class="d-flex align-items-center justify-content-between">
+               <div>
+                 <h4 class="mb-0 text-dark">
+                   {{ trip.departLocation }}
+                   <i class="fas fa-arrow-right text-muted mx-2"></i>
+                   {{ trip.arrivalLocation }}
+                 </h4>
+               </div>
+               <span class="badge badge-success">{{ trip.price }} crédits</span>
+             </div>
+           </div>
+         </div>
+ 
+         <!-- Dates et heures -->
+         <div class="row mb-3">
+           <div class="col-6">
+             <div class="d-flex align-items-center">
+               <i class="fas fa-clock text-success mr-2"></i>
+               <div>
+                 <small class="text-muted">Départ</small>
+                 <div class="font-weight-bold">
+                   {{ trip.departDate | date: 'dd MMM' }} à {{ trip.departHour | date: 'HH:mm' }}
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div class="col-6">
+             <div class="d-flex align-items-center">
+               <i class="fas fa-flag-checkered text-success mr-2"></i>
+               <div>
+                 <small class="text-muted">Arrivée</small>
+                 <div class="font-weight-bold">
+                   {{ trip.arrivalDate | date: 'dd MMM' }} à {{ trip.arrivalHour | date: 'HH:mm' }}
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+ 
+         <!-- Footer -->
+         <div class="d-flex justify-content-between align-items-center border-top pt-3">
+           <div class="d-flex align-items-center">
+             <i class="fas fa-user-friends text-muted mr-2"></i>
+             <span class="text-muted">{{ trip.placeNumber }} places restantes</span>
+           </div>
+        
+           <button class="btn btn-success" [routerLink]="['/tripDetails', trip.id ]">Voir le trajet</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
 
   <br>
 
