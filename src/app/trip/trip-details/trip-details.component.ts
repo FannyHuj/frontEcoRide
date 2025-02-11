@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TripService } from '../services/trip.service';
 import { Trip } from '../../models/trip';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +12,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './trip-details.component.css',
 })
 export class TripDetailsComponent {
-  @Input() trip!: Trip; // Réception du trajet via @Input()
-}
+  trip?: Trip; // Déclaration de la propriété qui contiendra les détails du trajet
+  
+
+  @Input()
+  set id(id: number) {
+    this.service.findOne(id).subscribe((data) => { // Conversion en number et appel API
+      this.trip = data; // Stockage des données reçues
+  })}
+  constructor(
+    private route: ActivatedRoute, // Service pour accéder aux paramètres de route
+    private service: TripService // Service pour récupérer les données
+  ) 
+  {}
+  }
+
 
 

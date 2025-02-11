@@ -1,7 +1,21 @@
-<h2>Détails du Trajet</h2>
-<div *ngIf="trip">
-  <p><strong>Départ :</strong> {{ trip.departLocation }} à {{ trip.departHour }}</p>
-  <p><strong>Arrivée :</strong> {{ trip.arrivalLocation }} à {{ trip.arrivalHour }}</p>
-  <p><strong>Places disponibles :</strong> {{ trip.placeNumber }}</p>
-  <p><strong>Prix :</strong> {{ trip.price }}€</p>
+<div *ngIf="trip" 
+     class="card shadow-lg mx-auto mt-4 mb-5 custom-green" 
+     style="max-width: 500px;">
+  <div class="card-header text-center custom-green-header">
+    <h2 class="mb-0">Détails du Trajet</h2>
+  </div>
+  <div class="card-body">
+    <p><i class="bi bi-geo-alt-fill"></i><strong> Départ :</strong> {{ trip.departLocation }} à {{ trip.departHour | date:'HH:mm' }}</p>
+    <p><i class="bi bi-geo-alt-fill"></i><strong> Arrivée :</strong> {{ trip.arrivalLocation }} à {{ trip.arrivalHour | date:'HH:mm' }}</p>
+    <p><i class="bi bi-person-fill"></i><strong> Places disponibles :</strong> {{ trip.placeNumber }}</p>
+    <p><i class="bi bi-cash"></i><strong> Prix :</strong> {{ trip.price }}€</p>
+  </div>
 </div>
+
+<div *ngIf="!trip" class="alert alert-warning text-center mt-4 mx-auto mb-5" style="max-width: 500px;">
+  Chargement des détails du trajet...
+</div>
+
+
+
+

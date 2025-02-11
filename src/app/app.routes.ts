@@ -33,7 +33,7 @@ export const routes: Routes = [
     { 
         path: 'tripDetails/:id', 
         component: TripDetailsComponent 
-    },
+      },
     {
         path:'SearchTrip',
         component:SearchTripComponent

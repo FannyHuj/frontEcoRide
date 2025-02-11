@@ -1,30 +1,31 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="card">
         <div class="card-body">
             <form>
                 <div class="row g-3">
                     <!-- Mail address -->
-                    <div class="col-md-6">
-                        <label for="mail" class="form-label">Addresse email</label>
+                    <div class="col-md-12">
+                        <label for="mail" class="form-label">Adresse email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
-                        <input type="mail" [(ngModel)]="login.username" name="mail" class="form-control" id="mail">
+                            <input type="mail" [(ngModel)]="login.username" name="mail" class="form-control" id="mail">
+                        </div>
                     </div>
-                </div>
-                    <!-- Password-->
-                    <div class="col-md-6">
-                        <label for="password" class="form-label">Password</label>
+                    <!-- Password -->
+                    <div class="col-md-12">
+                        <label for="password" class="form-label">Mot de passe</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-file-lock"></i></span>
-                            <input type="text" [(ngModel)]="login.password" name="password" class="form-control" id="password" placeholder="Saississez votre mot de passe">
+                            <input type="password" [(ngModel)]="login.password" name="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
                         </div>
-                    </div>                    
-                     <!-- Button -->
-                <button (click)="signIn()" type="submit" class="btn btn-success w-100">Se connecter</button>
-                <p><b>Pas encore inscrit?</b>Créer un compte</p>
+                    </div>
+                    <!-- Button -->
+                    <div class="col-md-12">
+                        <button (click)="signIn()" type="submit" class="btn btn-success w-100 mt-3">Se connecter</button>
+                        <p class="mt-2"><b>Pas encore inscrit? </b>Créer un compte</p>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-

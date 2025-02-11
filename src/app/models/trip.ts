@@ -7,7 +7,7 @@ export interface Trip {
     departHour:Date;
     departLocation:string;
     arrivalDate:Date;
-    arrivalHour:string;
+    arrivalHour:Date;
     arrivalLocation:string;
     status:string;
     placeNumber:number;

@@ -1,24 +1,31 @@
-<form class="barreRecherche">
-    <div class="row">
-      <div class="col-md-3 mb-3">
-        <span><i class="bi bi-circle"></i> &nbsp;</span><label for="departure" class="form-label">Départ</label>
-        <input type="text" class="form-control" id="departure">
-      </div>
-      <div class="col-md-3 mb-3">
-        <span><i class="bi bi-circle"></i> &nbsp;</span><label for="destination" class="form-label">Destination</label>
-        <input type="text" class="form-control" id="destination">
-      </div>
-      <div class="col-md-2 mb-3">
-        <span><i class="bi bi-calendar-week"></i> &nbsp;</span><label for="date" class="form-label">Date</label>
-        <input type="text" class="form-control" id="date">
-      </div>
-      <div class="col-md-2 mb-3">
-        <span><i class="bi bi-person"></i> &nbsp;</span><label for="passengers" class="form-label">Passager</label>
-        <input type="number" class="form-control" id="passengers">
-      </div>
+<form class="barreRecherche p-3 mt-4" style="background-color: #e0e0e0; border-radius: 10px;">
+  <div class="row align-items-center">
+    <div class="col-md-3 mb-3 d-flex align-items-center">
+      <i class="bi bi-circle" style="font-size: 1.5rem; color: #6c757d;"></i>
+      <label for="departure" class="form-label ms-2 mb-0" style="color: #6c757d;">Départ</label>
+      <input type="text" class="form-control ms-2" id="departure" placeholder="Départ">
     </div>
-    <button type="submit" class="btn">Rechercher</button>
-  </form>
+    <div class="col-md-3 mb-3 d-flex align-items-center">
+      <i class="bi bi-circle" style="font-size: 1.5rem; color: #6c757d;"></i>
+      <label for="destination" class="form-label ms-2 mb-0" style="color: #6c757d;">Destination</label>
+      <input type="text" class="form-control ms-2" id="destination" placeholder="Destination">
+    </div>
+    <div class="col-md-2 mb-3 d-flex align-items-center">
+      <i class="bi bi-calendar-week" style="font-size: 1.5rem; color: #6c757d;"></i>
+      <label for="date" class="form-label ms-2 mb-0" style="color: #6c757d;">Date</label>
+      <input type="text" class="form-control ms-2" id="date" placeholder="Date">
+    </div>
+    <div class="col-md-2 mb-3 d-flex align-items-center">
+      <i class="bi bi-person" style="font-size: 1.5rem; color: #6c757d;"></i>
+      <label for="passengers" class="form-label ms-2 mb-0" style="color: #6c757d;">Passager</label>
+      <input type="number" class="form-control ms-2" id="passengers" placeholder="Passager">
+    </div>
+    <div class="col-md-2 mb-3 d-flex align-items-center">
+      <button type="submit" class="btn btn-success w-100" style="background-color: #4CAF50;">Rechercher</button>
+    </div>
+  </div>
+</form>
+
   <br>
 
   <div class="container">

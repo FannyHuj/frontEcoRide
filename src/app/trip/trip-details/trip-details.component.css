@@ -1,0 +1,9 @@
+.custom-green {
+    background-color: #59C362 !important;
+    color: white;
+}
+
+.custom-green-header {
+    background-color: #4ea857 !important; 
+    border-bottom: 2px solid white;
+}
