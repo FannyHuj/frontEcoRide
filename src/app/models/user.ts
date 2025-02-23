@@ -1,6 +1,6 @@
 import { Car } from "./car";
 import { Review } from "./review";
-import { Role } from "./role";
+import { RoleType } from "./roleType";
 
 export interface User {
     lastName:string;
@@ -13,6 +13,6 @@ export interface User {
     picture:string;
     pseudo:string;
     car:Car[];
-    role:Role[];
+    role:RoleType[];
     review:Review [];
 }

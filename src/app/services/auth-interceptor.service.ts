@@ -4,8 +4,8 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 
 export function AuthInterceptorService (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
-  const auth = inject(AuthService);
-  const token = auth.getToken();
+  const auth = inject(AuthService); // Injection du service d'authentification
+  const token = auth.getToken(); // Récupération du token JWT
 
   if (!token) { 
     return next(req)

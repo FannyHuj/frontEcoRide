@@ -1,0 +1,22 @@
+.table {
+    margin-right: 10%; 
+    margin-top: 1%;
+}
+
+.review {
+    margin-top: 1%;
+    height:100%;
+    background-color: aqua;
+}
+
+.bi {
+    color: rgb(205, 205, 27);
+}
+
+.nav-link {
+    color:green;
+    background-color: rgba(119, 199, 119, 0.269);
+}
+
+
+
