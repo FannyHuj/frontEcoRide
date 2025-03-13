@@ -43,6 +43,13 @@
                     <label for="placeNumber" class="form-label">Places disponnibles</label>
                     <input type="number" [(ngModel)]="trip.placeNumber" name="placeNumber" class="form-control" id="placeNumber">
                 </div>
+
+                <!-- Price -->
+                <div class="mb-3">
+                    <label for="prixCredits" class="form-label">Prix en crédits</label>
+                    <input type="number" [(ngModel)]="trip.price" name="price" class="form-control" id="price" placeholder="Entrez le prix en crédits">
+                    <div class="form-text text-success">2 crédits seront prélevés par la plateforme</div>
+                </div>
                 <!-- Car -->
                 <div class="mb-3">
                     <label for="car" class="form-label">Véhicule</label>
@@ -56,14 +63,9 @@
                         <button type="button" class="btn btn-outline-secondary" routerLink="/AddNewCar">+ Nouveau véhicule</button>
                     </div>
                 </div>
-                <!-- Price -->
-                <div class="mb-3">
-                    <label for="prixCredits" class="form-label">Prix en crédits</label>
-                    <input type="number" [(ngModel)]="trip.price" name=" price" class="form-control" id=" price" placeholder="Entrez le prix en crédits">
-                    <div class="form-text text-success">2 crédits seront prélevés par la plateforme</div>
-                </div>
+                
                 <!-- Button -->
-                <button (click)="onClick()" type="submit" class="btn btn-success w-100">Publier le trajet</button>
+                <button (click)="onSubmit()" type="submit" class="btn btn-success w-100">Publier le trajet</button>
             </form>
         </div>
     </div>

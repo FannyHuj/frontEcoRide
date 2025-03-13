@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-header',

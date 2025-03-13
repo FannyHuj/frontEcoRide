@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from '../services/trip.service';
 import { Trip } from '../../models/trip';
 import { CommonModule } from '@angular/common';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-trip-details',
@@ -12,19 +14,39 @@ import { CommonModule } from '@angular/common';
   styleUrl: './trip-details.component.css',
 })
 export class TripDetailsComponent {
-  trip?: Trip; // Déclaration de la propriété qui contiendra les détails du trajet
+  passengers: User[] = [] as User[];
+  trip: Trip = {} as Trip;
+  user: User= {} as User;
   
 
   @Input()
   set id(id: number) {
-    this.service.findOne(id).subscribe((data) => { // Conversion en number et appel API
+    this.tripService.findOne(id).subscribe((data) => { // Conversion en number et appel API
       this.trip = data; // Stockage des données reçues
   })}
   constructor(
     private route: ActivatedRoute, // Service pour accéder aux paramètres de route
-    private service: TripService // Service pour récupérer les données
+    private tripService: TripService, // Service pour récupérer les données
+    private authService: AuthService,
   ) 
   {}
+  onSubmit() {
+    this.authService.getUser().subscribe({
+      next: (passengers) => {
+        this.passengers.push(passengers);
+      },
+      error: (err) => {
+        console.error('Erreur', err);
+      },
+    });
+
+    if (this.user.credit > this.trip.price){
+      this.tripService.addPassengers(this.passengers).subscribe();
+
+    }
+
+  }
+
   }
 
 

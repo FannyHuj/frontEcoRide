@@ -2,32 +2,32 @@
     <div class="card">
         <div class="card-body">
             <form>
-                <div class="row g-3">
+                <div class="row g-3 flex-column">
                     <!-- Pseudo-->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="pseudo" class="form-label">Pseudo</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        <input type="text" [(ngModel)]="user.pseudo" name="pseudo" class="form-control" id="pseudo" placeholder="Ex : AA-123-BB">
-                    </div>
+                            <input type="text" [(ngModel)]="user.pseudo" name="pseudo" class="form-control" id="pseudo" placeholder="Choisissez un pseudo">
+                        </div>
                     </div>
                     <!-- Mail address -->
-                    <div class="col-md-6">
-                        <label for="mail" class="form-label">Addresse email</label>
+                    <div class="col-md-12">
+                        <label for="mail" class="form-label">Adresse email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
-                        <input type="mail" [(ngModel)]="user.mail" name="mail" class="form-control" id="mail">
+                            <input type="email" [(ngModel)]="user.mail" name="mail" class="form-control" id="mail" placeholder="Saisissez votre mail">
+                        </div>
                     </div>
-                </div>
                     <!-- Password-->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-file-lock"></i></span>
-                            <input type="text" [(ngModel)]="user.password" name="password" class="form-control" id="password" placeholder="Saississez votre mot de passe">
+                            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
                         </div>
-                    </div>                    
-                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-12">
                         <p>Le mot de passe doit contenir :</p>
                         <ul>
                             <li>Au moins 8 caractères</li>
@@ -36,11 +36,14 @@
                         </ul>
                     </div>
                      <!-- Button -->
-                <button (click)="signIn()" type="submit" class="btn btn-success w-100">Suivant</button>
-                <p><b>Déjà inscrit ?</b>Connectez-vous</p>
+                    <div class="col-md-12">
+                        <button (click)="signIn()" type="submit" class="btn btn-success w-100">Suivant</button>
+                    </div>
+                    <div class="col-md-12">
+                        <p><b>Déjà inscrit ? </b> <button class="btn btn-success btn-sm"  routerLink="/Login">Connexion</button></p>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-

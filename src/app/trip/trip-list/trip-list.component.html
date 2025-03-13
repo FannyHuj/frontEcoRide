@@ -30,7 +30,7 @@
           alt="Profile"
           style="width: 32px; height: 32px"
         />
-        <span *ngFor="let user of trip.user; let i=index" class="p-2 text-white">{{user.firstName}}
+        <span *ngFor="let user of trip.passengers; let i=index" class="p-2 text-white">{{user.firstName}}
           <span *ngFor="let review of user.review; let i=index" class="text-white">{{review.notation}}</span>
         </span>
         <i class="bi bi-star-fill p-2 text-white"></i>

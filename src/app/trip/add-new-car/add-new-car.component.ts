@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { Car } from '../../models/car';
 import { FormsModule } from '@angular/forms';
 
@@ -10,14 +10,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddNewCarComponent {
 car:Car= {} as Car;
+onCarUpdate = output<Car>();
 
 addNewCar(){
- console.log(this.car.model);
- console.log(this.car.registration);
- console.log(this.car.energy);
- console.log(this.car.color);
- console.log(this.car.first_registration_date);
- console.log(this.car.brand);
+  this.onCarUpdate.emit(this.car);
 }
 
 }

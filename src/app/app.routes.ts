@@ -12,6 +12,8 @@ import { RoleType } from './models/roleType';
 import { EmployeeSpaceComponent } from './users/employee-space/employee-space.component';
 import { AdminSpaceComponent } from './users/admin-space/admin-space.component';
 import { UserSpaceComponent } from './users/user-space/user-space.component';
+import { MentionsLegalesComponent } from './shared/mentions-legales/mentions-legales.component';
+import { SignInComponent } from './users/sign-in/sign-in.component';
 
 export const routes: Routes = [
     {
@@ -38,22 +40,24 @@ export const routes: Routes = [
     { 
         path: 'tripDetails/:id', 
         component: TripDetailsComponent 
-      },
+    },
     {
-        path:'SearchTrip', // Chemin de la route (URL: /SearchTrip)
-        component:SearchTripComponent, // Composant à afficher lorsque cette route est atteinte
-        canActivate: [authGuard], // Utilisation d'un guard pour sécuriser l'accès
-        data: { roles: [RoleType.ADMIN] } // Restriction d'accès aux utilisateurs ayant le rôle ADMIN
+        path:'SearchTrip', 
+        component:SearchTripComponent, 
     },
     {
         path:'Login',
         component:LoginComponent
     },
     {
-        path:'EmployeeSpace',
-        component:EmployeeSpaceComponent, 
-        canActivate: [authGuard],
-        data: { roles: [RoleType.EMPLOYEE] }
+        path:'SignIn',
+        component:SignInComponent
+    },
+    {
+        path:'EmployeeSpace', // Chemin de la route (URL: /SearchTrip)
+        component:EmployeeSpaceComponent, // Composant à afficher lorsque cette route est atteinte
+        canActivate: [authGuard],// Utilisation d'un guard pour sécuriser l'accès
+        data: { roles: [RoleType.EMPLOYE] }// Restriction d'accès aux utilisateurs ayant le rôle EMPLOYE
     },
     {
         path:'AdminSpace',
@@ -66,5 +70,9 @@ export const routes: Routes = [
         component:UserSpaceComponent, 
         canActivate: [authGuard],
         data: { roles: [RoleType.USER] }
-    }
+    },
+    { 
+        path: 'MentionsLegales', 
+        component: MentionsLegalesComponent
+    },
 ];

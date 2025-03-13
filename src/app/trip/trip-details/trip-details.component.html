@@ -10,11 +10,9 @@
     <p><i class="bi bi-person-fill"></i><strong> Places disponibles :</strong> {{ trip.placeNumber }}</p>
     <p><i class="bi bi-cash"></i><strong> Prix :</strong> {{ trip.price }}€</p>
   </div>
+  <button (click)="onSubmit()" type="submit" class="btn btn-success w-100">Participer</button>
 </div>
 
-<div *ngIf="!trip" class="alert alert-warning text-center mt-4 mx-auto mb-5" style="max-width: 500px;">
-  Chargement des détails du trajet...
-</div>
 
 
 

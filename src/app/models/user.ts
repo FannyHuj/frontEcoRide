@@ -1,6 +1,7 @@
 import { Car } from "./car";
 import { Review } from "./review";
 import { RoleType } from "./roleType";
+import { Trip } from "./trip";
 
 export interface User {
     lastName:string;
@@ -13,6 +14,8 @@ export interface User {
     picture:string;
     pseudo:string;
     car:Car[];
+    tripsOwner:Trip[];
     role:RoleType[];
     review:Review [];
+    credit:number;
 }

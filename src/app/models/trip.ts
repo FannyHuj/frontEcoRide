@@ -12,6 +12,7 @@ export interface Trip {
     status:string;
     placeNumber:number;
     price:number;
-    user:User[];
+    passengers:User[];
+    driver:User;
     car:Car;
 }
