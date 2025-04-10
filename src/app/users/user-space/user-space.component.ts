@@ -19,7 +19,7 @@ export class UserSpaceComponent {
   carCreated = input<Car>({} as Car);
 
   validateProfile(){
-    this.userConnected.car.push(this.carCreated());
+    this.userConnected.cars.push(this.carCreated());
   }
 
   constructor(private authService: AuthService) { // Injection du service AuthService pour utiliser la fonction getUser()

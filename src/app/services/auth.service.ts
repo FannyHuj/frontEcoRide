@@ -54,7 +54,7 @@ export class AuthService {
     getUser():Observable<any>{
     let user: User = {} as User; // Création d'un objet user
     let tokenInfo = this.getDecodedAccessToken(this.getToken()); // Récupération du Token 
-    user.mail=tokenInfo.username; // L'attribut mail de l'objet user est égal à l'attribut mail (username) contenu dans le token 
+    user.email=tokenInfo.username; // L'attribut mail de l'objet user est égal à l'attribut mail (username) contenu dans le token 
     return this.http.post<any>('http://localhost:8000/api/userMail',user) // envoie le user à PHP
     
 } 

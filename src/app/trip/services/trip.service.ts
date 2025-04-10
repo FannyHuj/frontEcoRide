@@ -27,13 +27,11 @@ export class TripService {
     return this.http.get<Trip>(`http://localhost:8000/api/trip/${id}`);
   }
 
-  addPassengers(passengers:User[]):Observable<User[]>{
-    return this.http.post<User[]>('http://localhost:8000/api/passengers',passengers);
+  addPassenger(id:number,passengers:User):Observable<any>{
+    return this.http.post<User>(`http://localhost:8000/api/trip/${id}/addPassenger`,passengers);
   }
 
   signIn(user:User):Observable<User>{
     return this.http.post<User>('http://localhost:8000/api/signIn',user);
   }
-
 }
-

@@ -33,7 +33,7 @@ export class TripDetailsComponent {
   onSubmit() {
     this.authService.getUser().subscribe({
       next: (passengers) => {
-        this.passengers.push(passengers);
+        this.user=passengers;
       },
       error: (err) => {
         console.error('Erreur', err);
@@ -41,7 +41,9 @@ export class TripDetailsComponent {
     });
 
     if (this.user.credit > this.trip.price){
-      this.tripService.addPassengers(this.passengers).subscribe();
+
+      this.user.credit=this.user.credit-this.trip.price;
+      this.tripService.addPassenger(this.trip.id,this.user).subscribe();
 
     }
 

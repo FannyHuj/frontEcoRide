@@ -4,18 +4,20 @@ import { RoleType } from "./roleType";
 import { Trip } from "./trip";
 
 export interface User {
+    id:number;
+    trip: any;
     lastName:string;
     firstName:string;
-    mail:string;
+    email:string;
     password:string;
     phoneNumber:string;
     address:string;
     birthDate:string;
     picture:string;
     pseudo:string;
-    car:Car[];
-    tripsOwner:Trip[];
-    role:RoleType[];
+    cars:Car[];
+    trips:Trip[];
+    roles:RoleType[];
     review:Review [];
     credit:number;
 }

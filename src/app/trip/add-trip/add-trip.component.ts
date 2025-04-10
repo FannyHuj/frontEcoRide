@@ -34,7 +34,7 @@ this.authService.getUser().subscribe({ // Souscription à l'observable getUser()
       console.error("Erreur", err);
     }
   });
-  this.trip.driver.tripsOwner.push(this.trip)
+  this.trip.driver.trips.push(this.trip)
    this.trip.status="PENDING"
   this.service.addTrip(this.trip).subscribe();
 }

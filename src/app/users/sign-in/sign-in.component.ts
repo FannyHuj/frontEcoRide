@@ -16,12 +16,12 @@ export class SignInComponent {
   
   signIn(){
     console.log(this.user.pseudo);
-    console.log(this.user.mail);
+    console.log(this.user.email);
     console.log(this.user.password);
   
 
     this.user.credit=20; // Ajout de 20 crédit à la création d'un compte utilisateur
-    this.user.role.push(RoleType.USER); // Création d'un compte utilisateur
+    this.user.roles.push(RoleType.USER); // Création d'un compte utilisateur
     this.tripService.signIn(this.user).subscribe(); // Envoie du compte crée à PHP
   }
 
