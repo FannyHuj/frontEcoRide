@@ -4,22 +4,22 @@
     <div class="col-md-3 mb-3 d-flex align-items-center">
       <i class="bi bi-circle" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="departure" class="form-label ms-2 mb-0" style="color: #6c757d;">Départ</label>
-      <input type="text" [(ngModel)]="trip.departLocation" name="departLocation" class="form-control ms-2" id="departure" placeholder="Départ">
+      <input type="text" [(ngModel)]="searchTrip.departLocation" name="departLocation" class="form-control ms-2" id="departure" placeholder="Départ">
     </div>
     <div class="col-md-3 mb-3 d-flex align-items-center">
       <i class="bi bi-circle" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="destination" class="form-label ms-2 mb-0" style="color: #6c757d;">Destination</label>
-      <input type="text" [(ngModel)]="trip.arrivalLocation" name="arrivalLocation" class="form-control ms-2" id="destination" placeholder="Destination">
+      <input type="text" [(ngModel)]="searchTrip.arrivalLocation" name="arrivalLocation" class="form-control ms-2" id="destination" placeholder="Destination">
     </div>
     <div class="col-md-2 mb-3 d-flex align-items-center">
       <i class="bi bi-calendar-week" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="date" class="form-label ms-2 mb-0" style="color: #6c757d;">Date</label>
-      <input type="date" [(ngModel)]="trip.departDate" name="departDate" class="form-control ms-2" id="date">
+      <input type="date" [(ngModel)]="searchTrip.departDate" name="departDate" class="form-control ms-2" id="date">
     </div>
     <div class="col-md-2 mb-3 d-flex align-items-center">
       <i class="bi bi-person" style="font-size: 1.5rem; color: #6c757d;"></i>
       <label for="passengers" class="form-label ms-2 mb-0" style="color: #6c757d;">Passager</label>
-      <input type="number" [(ngModel)]="trip.placeNumber" name="placeNumber" class="form-control ms-2" id="passengers" placeholder="Passager">
+      <input type="number" [(ngModel)]="searchTrip.placeNumber" name="placeNumber" class="form-control ms-2" id="passengers" placeholder="Passager">
     </div>
     <div class="col-md-2 mb-3 d-flex align-items-center">
   <button (click)="onClick()" type="submit" class="btn btn-success w-100" style="background-color: #4CAF50;">Rechercher</button>

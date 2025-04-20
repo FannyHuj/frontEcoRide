@@ -3,6 +3,8 @@ import { Trip } from '../../models/trip';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
+import { TripSearch } from '../../models/trip-search';
+import { TripList } from '../../models/trip-list';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,8 @@ export class TripService {
     return this.http.get<Trip[]>('http://localhost:8000/api/tripList');
   }
 
-  searchTrip(trip: Trip): Observable<Trip[]> {
-    return this.http.post<Trip[]>('http://localhost:8000/api/searchTrip', trip);
+  searchTrip(tripSearch: TripSearch): Observable<TripList[]> {
+    return this.http.post<TripList[]>('http://localhost:8000/api/searchTrip', tripSearch);
   }
   
 

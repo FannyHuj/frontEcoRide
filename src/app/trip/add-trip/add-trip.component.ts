@@ -23,7 +23,7 @@ export class AddTripComponent {
   console.log(this.trip.arrivalLocation);
   console.log(this.trip.departDate);
   console.log(this.trip.departHour);
-  console.log(this.trip.price);
+  console.log(this.trip.creditPrice);
 
 this.authService.getUser().subscribe({ // Souscription à l'observable getUser() pour récupérer l'utilisateur connecté
     next: (driver) => { 
@@ -34,8 +34,7 @@ this.authService.getUser().subscribe({ // Souscription à l'observable getUser()
       console.error("Erreur", err);
     }
   });
-  this.trip.driver.trips.push(this.trip)
-   this.trip.status="PENDING"
+  
   this.service.addTrip(this.trip).subscribe();
 }
 

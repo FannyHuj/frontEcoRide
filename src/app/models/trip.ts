@@ -1,4 +1,5 @@
 import { Car } from "./car";
+import { UserMin } from "./user-min";
 
 export interface Trip {
     id:number;
@@ -10,6 +11,7 @@ export interface Trip {
     arrivalLocation:string;
     status:string;
     placeNumber:number;
-    price:number;
+    creditPrice:number;
     car:Car;
+    driver:UserMin;
 }
