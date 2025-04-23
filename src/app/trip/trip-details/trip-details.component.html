@@ -7,7 +7,7 @@
     <p><i class="bi bi-geo-alt-fill"></i><strong> Départ :</strong> {{ trip.departLocation }} à {{ trip.departHour | date:'HH:mm' }}</p>
     <p><i class="bi bi-geo-alt-fill"></i><strong> Arrivée :</strong> {{ trip.arrivalLocation }} à {{ trip.arrivalHour | date:'HH:mm' }}</p>
     <p><i class="bi bi-person-fill"></i><strong> Places disponibles :</strong> {{ trip.placeNumber }}</p>
-    <p><i class="bi bi-cash"></i><strong> Prix :</strong> {{ trip.price }}€</p>
+    <p><i class="bi bi-cash"></i><strong> Prix :</strong> {{ trip.creditPrice }}€</p>
   </div>
   <button (click)="onSubmit()" type="submit" class="btn btn-success w-100">Participer</button>
 </div>

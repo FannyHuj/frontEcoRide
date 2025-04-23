@@ -29,8 +29,8 @@ export class TripService {
     return this.http.get<Trip>(`http://localhost:8000/api/trip/${id}`);
   }
 
-  addPassenger(id:number,passengers:User):Observable<any>{
-    return this.http.post<User>(`http://localhost:8000/api/trip/${id}/addPassenger`,passengers);
+  booking(id:number, userId:number):Observable<any>{
+    return this.http.post<any>(`http://localhost:8000/api/booking/trip/${id}/user/${userId}`,{});
   }
 
   signIn(user:User):Observable<User>{

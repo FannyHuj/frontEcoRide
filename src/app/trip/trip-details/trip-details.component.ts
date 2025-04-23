@@ -28,28 +28,32 @@ export class TripDetailsComponent {
     private route: ActivatedRoute, // Service pour accéder aux paramètres de route
     private tripService: TripService, // Service pour récupérer les données
     private authService: AuthService,
+    
   ) 
   {}
   onSubmit() {
     this.authService.getUser().subscribe({
-      next: (passengers) => {
-        this.user=passengers;
+      next: (user) => {
+        this.user=user;
       },
       error: (err) => {
         console.error('Erreur', err);
       },
     });
 
-    if (this.user.credit > this.trip.price){
+    if (this.user.credit > this.trip.creditPrice){
 
-      this.user.credit=this.user.credit-this.trip.price;
-      this.tripService.addPassenger(this.trip.id,this.user).subscribe();
+      this.user.credit=this.user.credit-this.trip.creditPrice;
+      this.tripService.booking(this.trip.id, this.user.id).subscribe();
+      
 
     }
 
   }
 
   }
+
+ 
 
 
 
