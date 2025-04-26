@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from '../services/trip.service';
 import { Trip } from '../../models/trip';

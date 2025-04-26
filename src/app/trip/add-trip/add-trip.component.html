@@ -54,11 +54,8 @@
                 <div class="mb-3">
                     <label for="car" class="form-label">Véhicule</label>
                     <div class="d-flex align-items-center">
-                        <select class="form-select me-2" [(ngModel)]="trip.car.model" name="car" id="car">
-                            <option selected>Toyota RAV4</option>
-                            <option selected>BMW IX1</option>
-                            <option selected>Citroen C6</option>
-                            <option selected>Tesla modèle X</option>
+                        <select class="form-select me-2" [(ngModel)]="trip.car" name="car" id="car">
+                            <option *ngFor="let car of cars" >{{car.model}}</option>
                         </select>
                         <button type="button" class="btn btn-outline-secondary" routerLink="/AddNewCar">+ Nouveau véhicule</button>
                     </div>

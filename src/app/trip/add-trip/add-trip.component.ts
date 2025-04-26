@@ -4,16 +4,20 @@ import { Trip } from '../../models/trip';
 import { RouterLink } from '@angular/router';
 import { TripService } from '../services/trip.service';
 import { AuthService } from '../../services/auth.service';
+import { Car } from '../../models/car';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-trip',
-  imports: [FormsModule,RouterLink],
+  imports: [FormsModule,RouterLink, CommonModule],
   templateUrl: './add-trip.component.html',
   styleUrl: './add-trip.component.css'
 })
 export class AddTripComponent {
 
   trip:Trip= {} as Trip;
+  cars: Car[] = [];
+
   constructor(private service: TripService, private authService: AuthService){
   }
   
@@ -28,6 +32,7 @@ export class AddTripComponent {
 this.authService.getUser().subscribe({ // Souscription à l'observable getUser() pour récupérer l'utilisateur connecté
     next: (driver) => { 
       this.trip.driver = driver; // Stocke l'utilisateur récupéré
+      this.cars = driver.cars.model;
       
     },
     error: (err) => {
@@ -37,6 +42,5 @@ this.authService.getUser().subscribe({ // Souscription à l'observable getUser()
   
   this.service.addTrip(this.trip).subscribe();
 }
-
 
 }

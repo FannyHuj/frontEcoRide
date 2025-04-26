@@ -33,7 +33,7 @@ export class AuthService {
       return this.http.post<Auth>('http://localhost:8000/api/login_check',login)
     }
 
-    hasRole(requiredRoles: RoleType[]): boolean {
+  hasRole(requiredRoles: RoleType[]): boolean {
       
         let tokenInfo = this.getDecodedAccessToken(this.getToken());// Décodage du token JWT
 
@@ -56,9 +56,9 @@ export class AuthService {
     let tokenInfo = this.getDecodedAccessToken(this.getToken()); // Récupération du Token 
     user.email=tokenInfo.username; // L'attribut mail de l'objet user est égal à l'attribut mail (username) contenu dans le token 
     return this.http.post<any>('http://localhost:8000/api/userMail',user) // envoie le user à PHP
-    
-} 
 
   };
+
   
- 
+  
+}
