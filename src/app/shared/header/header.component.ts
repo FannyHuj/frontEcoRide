@@ -28,6 +28,10 @@ getRole():string{
     return ""
 }
 
+idLogged():boolean{
+  return this.authService.getToken!=null? true:false
+}
+
 }
 
   

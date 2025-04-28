@@ -50,14 +50,79 @@
       aria-labelledby="v-pills-home-tab"
       tabindex="0"
     >
-      <div class="card">
-        <div class="card-body">
-          Total des crédits plateforme
-          <br />
-          24,586 crédits
-        </div>
-      </div>
     </div>
+
+    
+    <div class="container py-4">
+      <!-- Header Section -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+              <h1 class="h3 mb-0">Tableau de bord</h1>
+          </div>
+      </div>
+  
+      <!-- Stats Cards Row -->
+      <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6 col-lg-5">
+              <div class="card border-0 shadow-sm">
+                  <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                              <h6 class="text-muted mb-2">Nombre total d'utilisateurs</h6>
+                              <h3 class="mb-0">8,549</h3>
+                          </div>
+                          <div class="bg-primary bg-opacity-10 p-3 rounded">
+                              <i class="fas fa-users text-primary"></i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-5">
+              <div class="card border-0 shadow-sm">
+                  <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                              <h6 class="text-muted mb-2">Nombre total de crédits gagnés</h6>
+                              <h3 class="mb-0">$24,890</h3>
+                          </div>
+                          <div class="bg-success bg-opacity-10 p-3 rounded">
+                              <i class="fas fa-dollar-sign text-success"></i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Main Content Area --> 
+<div class="row g-3 justify-content-center">
+
+  <!-- Graphic 1 -->
+  <div class="col-12 col-md-6 col-lg-5">
+      <div class="card border-0 shadow-sm text-center">
+          <div class="card-header bg-white border-0">
+              <h5 class="mb-0">Nombre de covoiturages par jour</h5>
+          </div>
+          <div class="card-body">
+              <app-admim-trip-chart></app-admim-trip-chart>
+          </div>
+      </div>
+  </div>
+
+  <!-- Graphic 2 -->
+  <div class="col-12 col-md-6 col-lg-5">
+      <div class="card border-0 shadow-sm text-center">
+          <div class="card-header bg-white border-0">
+              <h5 class="mb-0">Gain de la plateforme en fonction des jours</h5>
+          </div>
+          <div class="card-body">
+              <app-admim-trip-chart></app-admim-trip-chart>
+          </div>
+      </div>
+  </div>
+
+</div>
 
     <div
       class="tab-pane fade"
