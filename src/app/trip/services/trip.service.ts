@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { TripSearch } from '../../models/trip-search';
 import { TripList } from '../../models/trip-list';
+import { Statistics } from '../../models/statistics';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,9 @@ export class TripService {
 
   signIn(user:User):Observable<User>{
     return this.http.post<User>('http://localhost:8000/api/signIn',user);
+  }
+
+  getStatistic(): Observable<Statistics> {
+    return this.http.get<Statistics>('http://localhost:8000/api/covoiturages/trip-per-day');
   }
 }

@@ -1,195 +1,84 @@
 <div class="d-flex align-items-start">
-  <div
-    class="nav flex-column nav-pills me-3"
-    id="v-pills-tab"
-    role="tablist"
-    aria-orientation="vertical"
-  >
-    <button
-      class="nav-link active"
-      id="v-pills-home-tab"
-      data-bs-toggle="pill"
-      data-bs-target="#v-pills-home"
-      type="button"
-      role="tab"
-      aria-controls="v-pills-home"
-      aria-selected="true"
-    >
+  <!-- Sidebar Navigation -->
+  <div class="nav flex-column nav-pills me-3 p-3 bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="min-width: 220px; height: 100vh;">
+
+    <button class="nav-link text-success border-success text-start mb-2" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
       Tableau de bord
     </button>
-    <button
-      class="nav-link"
-      id="v-pills-profile-tab"
-      data-bs-toggle="pill"
-      data-bs-target="#v-pills-profile"
-      type="button"
-      role="tab"
-      aria-controls="v-pills-profile"
-      aria-selected="false"
-    >
+    <button class="nav-link text-success border-success text-start mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
       Gestion des employés
     </button>
-    <button
-      class="nav-link"
-      id="v-pills-messages-tab"
-      data-bs-toggle="pill"
-      data-bs-target="#v-pills-messages"
-      type="button"
-      role="tab"
-      aria-controls="v-pills-messages"
-      aria-selected="false"
-    >
+    <button class="nav-link text-success border-success text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">
       Gestion utilisateurs
     </button>
-  </div>
-  <div class="tab-content" id="v-pills-tabContent">
-    <div
-      class="tab-pane fade show active"
-      id="v-pills-home"
-      role="tabpanel"
-      aria-labelledby="v-pills-home-tab"
-      tabindex="0"
-    >
-    </div>
 
-    
-    <div class="container py-4">
-      <!-- Header Section -->
+  </div>
+
+
+  <!-- Content Area -->
+  <div class="tab-content container py-4" id="v-pills-tabContent">
+
+    <!-- Tableau de bord -->
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
       <div class="d-flex justify-content-between align-items-center mb-4">
-          <div>
-              <h1 class="h3 mb-0">Tableau de bord</h1>
-          </div>
+        <h1 class="h3 mb-0">Tableau de bord</h1>
       </div>
-  
-      <!-- Stats Cards Row -->
       <div class="row g-3 mb-4">
-          <div class="col-12 col-md-6 col-lg-5">
-              <div class="card border-0 shadow-sm">
-                  <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                              <h6 class="text-muted mb-2">Nombre total d'utilisateurs</h6>
-                              <h3 class="mb-0">8,549</h3>
-                          </div>
-                          <div class="bg-primary bg-opacity-10 p-3 rounded">
-                              <i class="fas fa-users text-primary"></i>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body">
+              <h6 class="text-muted mb-2">Nombre total d'utilisateurs</h6>
+              <h3 class="mb-0">8,549</h3>
+            </div>
+            
           </div>
-          <div class="col-12 col-md-6 col-lg-5">
-              <div class="card border-0 shadow-sm">
-                  <div class="card-body">
-                      <div class="d-flex justify-content-between align-items-center">
-                          <div>
-                              <h6 class="text-muted mb-2">Nombre total de crédits gagnés</h6>
-                              <h3 class="mb-0">$24,890</h3>
-                          </div>
-                          <div class="bg-success bg-opacity-10 p-3 rounded">
-                              <i class="fas fa-dollar-sign text-success"></i>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body">
+              <h6 class="text-muted mb-2">Nombre total de crédits gagnés</h6>
+              <h3 class="mb-0">$24,890</h3>
+            </div>
           </div>
+        </div>
       </div>
-  
-      <!-- Main Content Area --> 
-<div class="row g-3 justify-content-center">
 
-  <!-- Graphic 1 -->
-  <div class="col-12 col-md-6 col-lg-5">
-      <div class="card border-0 shadow-sm text-center">
-          <div class="card-header bg-white border-0">
-              <h5 class="mb-0">Nombre de covoiturages par jour</h5>
-          </div>
-          <div class="card-body">
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-md-6 col-lg-6">
+          <div class="card border-0 shadow-sm bg-light">
+            <div class="card-header bg-light border-0">
+              <h6 class="text-muted mb-2">Nombre de covoiturages par jour</h6>
+            </div>
+            <div class="card-body">
               <app-admim-trip-chart></app-admim-trip-chart>
+            </div>
           </div>
-      </div>
-  </div>
-
-  <!-- Graphic 2 -->
-  <div class="col-12 col-md-6 col-lg-5">
-      <div class="card border-0 shadow-sm text-center">
-          <div class="card-header bg-white border-0">
-              <h5 class="mb-0">Gain de la plateforme en fonction des jours</h5>
-          </div>
-          <div class="card-body">
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <div class="card border-0 shadow-sm bg-light">
+            <div class="card-header bg-light border-0">
+              <h6 class="text-muted mb-2">Crédits gagnés par jour</h6>
+            </div>
+            <div class="card-body">
               <app-admim-trip-chart></app-admim-trip-chart>
+            </div>
           </div>
-      </div>
-  </div>
-
-</div>
-
-    <div
-      class="tab-pane fade"
-      id="v-pills-profile"
-      role="tabpanel"
-      aria-labelledby="v-pills-profile-tab"
-      tabindex="0"
-    >
-      <div class="tab-content" id="v-pills-tabContent">
-        <div
-          class="tab-pane fade show active"
-          id="v-pills-home"
-          role="tabpanel"
-          aria-labelledby="v-pills-home-tab"
-          tabindex="0"
-        >
-          <h3>Gestion des employés</h3>
-          <button type="button" class="btn btn-success m-1">
-            + Nouvel employé
-          </button>
-          <br /><br />
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Statut</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#12345</td>
-                <td>Jean Dupont</td>
-                <td>jean.ecoride.com</td>
-                <td>
-                  <button type="button" class="btn btn-success m-1">
-                    Actif
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-danger m-1">
-                    Suspendre</button
-                  ><button type="button" class="btn btn-success m-1">
-                    Modifier
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
-    <div
-      class="tab-pane fade"
-      id="v-pills-messages"
-      role="tabpanel"
-      aria-labelledby="v-pills-messages-tab"
-      tabindex="0"
-    >
+
+    <!-- Gestion des employés -->
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+      <h3>Gestion des employés</h3>
+      <button type="button" class="btn btn-success m-1">+ Nouvel employé</button>
+      <br /><br />
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>ID</th>
             <th>Nom</th>
             <th>Email</th>
+            <th>Statut</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -198,14 +87,41 @@
             <td>#12345</td>
             <td>Jean Dupont</td>
             <td>jean.ecoride.com</td>
+            <td><button type="button" class="btn btn-success m-1">Actif</button></td>
             <td>
-              <button type="button" class="btn btn-danger m-1">
-                Suspendre
-              </button>
+              <button type="button" class="btn btn-danger m-1">Suspendre</button>
+              <button type="button" class="btn btn-success m-1">Modifier</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <!-- Gestion utilisateurs -->
+    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0">
+      <h3>Gestion des utilisateurs</h3>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}} {{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td><button type="button" class="btn btn-success m-1">{{ user.active ? 'Actif' : 'Non actif' }}</button></td>
+            <td><button (click)="suspendingMember(user.id)" type="button" class="btn btn-danger m-1">Suspendre</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    </div>
+
   </div>
-</div>

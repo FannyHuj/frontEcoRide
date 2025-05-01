@@ -1,0 +1,17 @@
+
+  /* Par défaut, texte vert */
+.nav-pills .nav-link {
+    color: #198754; /* Vert Bootstrap */
+  }
+  
+  /* Quand actif (cliqué), fond vert et texte blanc */
+  .nav-pills .nav-link.active {
+    background-color: #198754; /* Vert Bootstrap */
+    color: #fff !important; /* Texte blanc */
+  }
+  
+  /* Optionnel : survol pour un effet visuel */
+  .nav-pills .nav-link:hover {
+    
+    color: #145c32;
+  }

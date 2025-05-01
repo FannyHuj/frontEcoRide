@@ -16,8 +16,8 @@ export interface User {
     picture:string;
     pseudo:string;
     cars:Car[];
-    trips:Trip[];
     roles:RoleType[];
     review:Review [];
     credit:number;
+    active:boolean;
 }

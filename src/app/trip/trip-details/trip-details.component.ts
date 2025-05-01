@@ -35,6 +35,8 @@ export class TripDetailsComponent {
     this.authService.getUser().subscribe({
       next: (user) => {
         this.user=user;
+        this.tripService.booking(this.trip.id, this.user.id).subscribe();
+      
       },
       error: (err) => {
         console.error('Erreur', err);
@@ -44,8 +46,6 @@ export class TripDetailsComponent {
     if (this.user.credit > this.trip.creditPrice){
 
       this.user.credit=this.user.credit-this.trip.creditPrice;
-      this.tripService.booking(this.trip.id, this.user.id).subscribe();
-      
 
     }
 
