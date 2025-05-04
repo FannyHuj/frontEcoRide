@@ -11,6 +11,7 @@ export class UsersService {
   constructor(private http:HttpClient) {}
 
   getAllUsers(): Observable<User[]> {
+    console.log("userService called called")
       return this.http.get<User[]>('http://localhost:8000/api/admin/getAllUsers');
     }
 
@@ -20,5 +21,9 @@ export class UsersService {
 
   suspendingMember(id:number): Observable<any> {
     return this.http.put(`http://localhost:8000/api/user/suspending/${id}`,{});
-}
+  }
+
+  reactivateMember(id:number): Observable<any>{
+    return this.http.put(`http://localhost:8000/api/user/reactivate/${id}`,{});
+  }
 }

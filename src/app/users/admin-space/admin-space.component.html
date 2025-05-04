@@ -8,7 +8,7 @@
     <button class="nav-link text-success border-success text-start mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
       Gestion des employés
     </button>
-    <button class="nav-link text-success border-success text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+    <button (click)="loadUsers()"class="nav-link text-success border-success text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">
       Gestion utilisateurs
     </button>
 
@@ -88,10 +88,7 @@
             <td>Jean Dupont</td>
             <td>jean.ecoride.com</td>
             <td><button type="button" class="btn btn-success m-1">Actif</button></td>
-            <td>
-              <button type="button" class="btn btn-danger m-1">Suspendre</button>
-              <button type="button" class="btn btn-success m-1">Modifier</button>
-            </td>
+            <td><button type="button" class="btn btn-danger m-1">Suspendre</button><span><button type="button" class="btn btn-success m-1">Réactiver le compte</button></span></td>
           </tr>
         </tbody>
       </table>
@@ -116,7 +113,7 @@
             <td>{{user.firstName}} {{user.lastName}}</td>
             <td>{{user.email}}</td>
             <td><button type="button" class="btn btn-success m-1">{{ user.active ? 'Actif' : 'Non actif' }}</button></td>
-            <td><button (click)="suspendingMember(user.id)" type="button" class="btn btn-danger m-1">Suspendre</button></td>
+            <td><button (click)="suspendingMember(user.id)" type="button" class="btn btn-danger m-1">Suspendre</button><span><button (click)="reactivateMember(user.id)" type="button" class="btn btn-success m-1">Réactiver le compte</button></span></td>
           </tr>
         </tbody>
       </table>

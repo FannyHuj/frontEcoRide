@@ -4,6 +4,7 @@ export interface Review {
     id:number;
     comment:string;
     notation:string;
-    status:string;
-    owner:User;
+    publish:boolean;
+    ownerId:number;
+    tripId:number
 }

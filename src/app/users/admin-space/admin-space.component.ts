@@ -3,6 +3,7 @@ import { AdmimTripChartComponent } from '../admim-trip-chart/admim-trip-chart.co
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
+import { RoleType } from '../../models/roleType';
 
 @Component({
   selector: 'app-admin-space',
@@ -12,17 +13,35 @@ import { User } from '../../models/user';
 })
 export class AdminSpaceComponent {
 
+  
   users:User[]=[];
   user: User= {} as User;
 
   constructor(private userService: UsersService) {
+    console.log("Constructor called")
     this.userService.getAllUsers().subscribe((data:User[]) => {
       this.users=data;
     });
   }
 
   suspendingMember(id: number) {
-    console.log('Suspending user with ID:', id);
-    this.userService.suspendingMember(id).subscribe;
+    this.userService.suspendingMember(id).subscribe();
 }
+
+  reactivateMember(id: number){
+    console.log('Reactivate user with ID:', id);
+    this.userService.reactivateMember(id).subscribe();
+  }
+
+  loadUsers(){
+   
+    this.users=this.users.filter(user=>user.roles.includes(RoleType.USER)); 
+    
+    
+  }
+
+  loadEmployee(){
+    return this.users.filter(user=>user.roles.includes(RoleType.EMPLOYE));
+  }
+
 }

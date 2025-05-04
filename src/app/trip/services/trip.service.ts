@@ -21,6 +21,10 @@ export class TripService {
     return this.http.get<Trip[]>('http://localhost:8000/api/tripList');
   }
 
+  getAllTripByUserId(userId:number): Observable<Trip[]> {
+    return this.http.get<Trip[]>(`http://localhost:8000/api/findByUser/${userId}`);
+  }
+
   searchTrip(tripSearch: TripSearch): Observable<TripList[]> {
     return this.http.post<TripList[]>('http://localhost:8000/api/searchTrip', tripSearch);
   }
