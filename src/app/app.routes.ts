@@ -13,7 +13,7 @@ import { AdminSpaceComponent } from './users/admin-space/admin-space.component';
 import { UserSpaceComponent } from './users/user-space/user-space.component';
 import { MentionsLegalesComponent } from './shared/mentions-legales/mentions-legales.component';
 import { SignInComponent } from './users/sign-in/sign-in.component';
-import { ReportTripComponent } from './users/report-trip/report-trip.component';
+
 
 export const routes: Routes = [
     {
@@ -70,9 +70,5 @@ export const routes: Routes = [
     { 
         path: 'MentionsLegales', 
         component: MentionsLegalesComponent
-    },
-    { 
-        path: 'ReportTrip', 
-        component: ReportTripComponent 
     },
 ];

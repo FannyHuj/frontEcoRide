@@ -14,11 +14,13 @@ import { ReportTrip } from '../../models/report-trip';
 import { Review } from '../../models/review';
 import { ReviewService } from '../../services/review.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { FilterTripHistoricPipe } from '../../pipe/filter-trip-historic.pipe';
+import { ReportTripService } from '../../services/report-trip.service';
 
 
 @Component({
   selector: 'app-user-space',
-  imports: [AddNewCarComponent,ProfileTypeComponent,PreferencesComponent,CommonModule,RouterModule,StatusTripPipe,FormsModule],
+  imports: [AddNewCarComponent,ProfileTypeComponent,PreferencesComponent,CommonModule,RouterModule,StatusTripPipe,FormsModule,FilterTripHistoricPipe],
   templateUrl: './user-space.component.html',
   styleUrl: './user-space.component.css'
 })
@@ -37,7 +39,7 @@ export class UserSpaceComponent {
     this.userConnected.cars.push(this.carCreated());
   }
 
-  constructor(private authService: AuthService, private tripService:TripService, private reviewService:ReviewService) { // Injection du service AuthService pour utiliser la fonction getUser()
+  constructor(private authService: AuthService, private tripService:TripService, private reviewService:ReviewService, private reportTripService: ReportTripService) { // Injection du service AuthService pour utiliser la fonction getUser()
     this.authService.getUser().subscribe({ // Souscription à l'observable getUser()
       next: (user) => {
         this.userConnected = user; // Stocke l'utilisateur récupéré
@@ -61,12 +63,17 @@ export class UserSpaceComponent {
 
  // @Output() trip = new EventEmitter<Trip>();
 
-  terminateTrip(trip : Trip) {
+  setSelectedTrip(trip : Trip) {
     this.selectedTrip=trip;
+  }
+
+  terminateTrip(){
+    this.tripService.terminatedTrip(this.selectedTrip.id).subscribe();
   }
 
   cancelTrip(){
 
+    
   }
 
   validateReview(){
@@ -75,15 +82,23 @@ export class UserSpaceComponent {
     this.review.ownerId=this.userConnected.id;
     this.reviewService.addReview(this.review).subscribe({ // Souscription à l'observable getUser()
       next: (user) => {
-        this.review.comment = ""; 
-        this.review.publish=false;
-        this.review.tripId=0;
-        this.review.ownerId=0;
       },
       error: (err) => {
         console.error("Erreur", err);
       }
     });
+  }
+
+  isDriver(trip : Trip){
+    console.log(trip);  
+    return this.userConnected.id== trip.driver.id;
+  }
+
+  reportTrip(){
+    
+    this.report.idTrip=this.selectedTrip.id;
+    this.reportTripService.reportTrip(this.report).subscribe();
+    
   }
 
 }  

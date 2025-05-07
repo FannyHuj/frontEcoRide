@@ -3,30 +3,42 @@
         <div class="card-body">
             <form>
                 <div class="row g-3 flex-column">
-                    <!-- Pseudo-->
+                    <!-- First name -->
                     <div class="col-md-12">
-                        <label for="pseudo" class="form-label">Pseudo</label>
+                        <label for="firstName" class="form-label">Prénom</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input type="text" [(ngModel)]="user.pseudo" name="pseudo" class="form-control" id="pseudo" placeholder="Choisissez un pseudo">
+                            <input type="text" [(ngModel)]="user.firstName" name="firstName" class="form-control" id="firstName" placeholder="Saisissez votre prénom">
                         </div>
                     </div>
-                    <!-- Mail address -->
+                    
+                    <!-- Last name -->
                     <div class="col-md-12">
-                        <label for="mail" class="form-label">Adresse email</label>
+                        <label for="lastName" class="form-label">Nom</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input type="text" [(ngModel)]="user.lastName" name="lastName" class="form-control" id="lastName" placeholder="Saisissez votre nom">
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="col-md-12">
+                        <label for="email" class="form-label">Adresse email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
-                            <input type="email" [(ngModel)]="user.email" name="mail" class="form-control" id="mail" placeholder="Saisissez votre mail">
+                            <input type="email" [(ngModel)]="user.email" name="email" class="form-control" id="email" placeholder="Saisissez votre mail">
                         </div>
                     </div>
-                    <!-- Password-->
+
+                    <!-- Password -->
                     <div class="col-md-12">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Mot de passe</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-file-lock"></i></span>
                             <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
                         </div>
                     </div>
+
                     <div class="col-md-12">
                         <p>Le mot de passe doit contenir :</p>
                         <ul>
@@ -35,12 +47,44 @@
                             <li>Un chiffre et un caractère spécial</li>
                         </ul>
                     </div>
-                     <!-- Button -->
+
+                    <!-- Address -->
                     <div class="col-md-12">
-                        <button (click)="signIn()" type="submit" class="btn btn-success w-100">Suivant</button>
+                        <label for="address" class="form-label">Adresse</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                            <input type="text" [(ngModel)]="user.address" name="address" class="form-control" id="address" placeholder="Saisissez votre adresse">
+                        </div>
                     </div>
+         
+                    <!-- Birth date -->
                     <div class="col-md-12">
-                        <p><b>Déjà inscrit ? </b> <button class="btn btn-success btn-sm"  routerLink="/Login">Connexion</button></p>
+                        <label for="birthDate" class="form-label">Date de naissance</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                            <input type="date" [(ngModel)]="user.birthDate" name="birthDate" class="form-control" id="birthDate">
+                        </div>
+                    </div>
+
+                    <!-- Phone number -->
+                    <div class="col-md-12">
+                        <label for="phoneNumber" class="form-label">Numéro de téléphone</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                            <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" class="form-control" id="phoneNumber" placeholder="06XXXXXXXX">
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="col-md-12">
+                        <button (click)="newUser()" type="submit" class="btn btn-success w-100">Suivant</button>
+                    </div>
+
+                    <!-- Already registered -->
+                    <div class="col-md-12">
+                        <p><b>Déjà inscrit ? </b>
+                            <button class="btn btn-success btn-sm" routerLink="/Login">Connexion</button>
+                        </p>
                     </div>
                 </div>
             </form>

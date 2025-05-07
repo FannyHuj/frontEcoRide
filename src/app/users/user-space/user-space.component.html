@@ -32,7 +32,7 @@
     <!-- Onglet trajets -->
     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
       <div class="container">
-        <h4 class="fw-bold mb-4">Historique de mes trajets</h4>
+        <h4 class="fw-bold mb-4">Mes trajets</h4>
         <div class="table-responsive">
           <table class="table table-hover table-bordered align-middle">
             <thead class="table-success">
@@ -47,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let trip of trips">
+              <tr *ngFor="let trip of trips | filterTripHistoric:'myTrips':userConnected.id">
                 <td>{{trip.id}}</td>
                 <td>{{ trip.departDate | date:'dd/MM/yyyy' }}</td>
                 <td>{{ trip.departDate | date:'HH:mm' }}</td>
@@ -55,30 +55,62 @@
                 <td>{{ trip.arrivalLocation }}</td>
                 <td>{{ trip.status | statusTrip }} </td>
                 <td>
-                  <button (click)="terminateTrip(trip)" *ngIf="trip.status === 'inProgress'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#terminerVoyage">
+                  <button (click)="setSelectedTrip(trip)" *ngIf="isDriver(trip) && trip.status === 'inProgress'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#terminate">
                     Terminer le voyage
+                  </button>
+                  <button *ngIf="isDriver(trip) && trip.status=== 'coming'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#terminerVoyage">
+                    Commencer le voyage
                   </button>
                   <button *ngIf="trip.status == 'coming'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#annuler">
                     Annuler le voyage
-                  </button> 
-                  <button (click)="terminateTrip(trip)" *ngIf="trip.status === 'done'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#terminerVoyage">
+                  </button>               
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 class="fw-bold mb-4">Historique de mes trajets</h4>
+
+          <table class="table table-hover table-bordered align-middle">
+            <thead class="table-success">
+              <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Date</th>
+                <th scope="col">Heure</th>
+                <th scope="col">Départ</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let trip of trips | filterTripHistoric:'historic':userConnected.id">
+                <td>{{trip.id}}</td>
+                <td>{{ trip.departDate | date:'dd/MM/yyyy' }}</td>
+                <td>{{ trip.departDate | date:'HH:mm' }}</td>
+                <td>{{ trip.departLocation }}</td>
+                <td>{{ trip.arrivalLocation }}</td>
+                <td>{{ trip.status | statusTrip }} </td>
+                <td>
+                  <button (click)="setSelectedTrip(trip)" *ngIf="isDriver(trip)===false" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#review">
                     Mettre un avis
                   </button>
-                  <button *ngIf="trip.status == 'done'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#signaler">
+                  <button (click)="setSelectedTrip(trip)" *ngIf="isDriver(trip)===false" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#signaler">
                     Signaler un incident
                   </button>                
                 </td>
               </tr>
             </tbody>
           </table>
+          
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal Terminer -->
-<div class="modal fade" id="terminerVoyage" tabindex="-1" aria-labelledby="terminerVoyageLabel" aria-hidden="true">
+<!-- Modal Review -->
+<div class="modal fade" id="review" tabindex="-1" aria-labelledby="reviewLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content p-4">
       <div class="modal-header border-0">
@@ -96,7 +128,8 @@
             <input  [(ngModel)]="review.notation" type="radio" id="star2" name="rating" value="2"><label for="star2" class="fas fa-star"></label>
             <input  [(ngModel)]="review.notation" type="radio" id="star1" name="rating" value="1"><label for="star1" class="fas fa-star"></label>
           </div>
-          <textarea [(ngModel)]="review.comment" class="form-control mb-3" rows="3" placeholder="Laissez votre avis sur le voyage"></textarea>
+          <textarea [(ngModel)]="review.comment" name="comment" class="form-control mb-3" rows="3" placeholder="Laissez votre avis sur le voyage"></textarea>
+          
           <br>
           <button type="button" (click)="validateReview()" class="btn btn-success w-20" data-bs-dismiss="modal">Valider mon avis</button>
           <button type="button" class="btn btn-danger w-20" [routerLink]="['/ReportTrip',selectedTrip]" data-bs-dismiss="modal">Signaler le trajet</button>
@@ -106,7 +139,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- Modal Annuler -->
 <div class="modal fade" id="annuler" tabindex="-1" aria-labelledby="annulerLabel" aria-hidden="true">
@@ -147,10 +179,10 @@
             <form>
               <div class="mb-3">
                 <label for="details" class="form-label">Détails du problème</label>
-                <textarea class="form-control" name="details" id="details" rows="5" placeholder="Décrivez ce qui s'est passé..."></textarea>
+                <textarea class="form-control" [(ngModel)]="report.detail" name="details" id="details" rows="5" placeholder="Décrivez ce qui s'est passé..."></textarea>
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-danger">Envoyer le signalement</button>
+                <button (click)="reportTrip()" type="submit" class="btn btn-danger" data-bs-dismiss="modal">Envoyer le signalement</button>
               </div>
             </form>
           </div>
@@ -158,6 +190,25 @@
             Merci de nous aider à améliorer la sécurité de notre plateforme.
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Terminate Trip -->
+<div class="modal fade" id="terminate" tabindex="-1" aria-labelledby="terminateLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="annulerLabel">Terminer le voyage</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir terminer ce voyage ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        <button (click)="terminateTrip()" type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
       </div>
     </div>
   </div>
