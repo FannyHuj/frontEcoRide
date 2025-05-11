@@ -72,7 +72,7 @@ export class UserSpaceComponent {
   }
 
   cancelTrip(){
-
+    this.tripService.cancelTrip(this.selectedTrip.id, this.userConnected.id).subscribe();
     
   }
 
@@ -98,6 +98,12 @@ export class UserSpaceComponent {
     
     this.report.idTrip=this.selectedTrip.id;
     this.reportTripService.reportTrip(this.report).subscribe();
+    
+  }
+
+  startTrip(trip:Trip){
+    
+    this.tripService.startTrip(trip.id).subscribe();
     
   }
 

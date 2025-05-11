@@ -45,4 +45,13 @@ export class TripService {
     return this.http.get<Trip>(`http://localhost:8000/api/terminate/${id}`);
   }
 
+  cancelTrip(id:number, userId:number): Observable<Trip> {
+    return this.http.put<Trip>(`http://localhost:8000/api/cancel/trip/${id}/user/${userId}`,{});
+  }
+
+  startTrip(id:number): Observable<Trip> {
+    return this.http.put<Trip>(`http://localhost:8000/api/start/trip/${id}`,{});
+  }
+  
+
 }

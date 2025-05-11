@@ -17,30 +17,60 @@ export class AddTripComponent {
 
   trip:Trip= {} as Trip;
   cars: Car[] = [];
+  selectedCar:Car = {} as Car;
 
-  constructor(private service: TripService, private authService: AuthService){
+  constructor(
+    private service: TripService,
+    private authService: AuthService
+  ) {
+    this.authService.getUser().subscribe({
+      next: (driver) => {
+        this.cars = driver.cars;
+      },
+      error: (err) => {
+        console.error("Erreur lors du chargement de l'utilisateur", err);
+      }
+    });
   }
   
-
-  onSubmit(){
-  console.log(this.trip.departLocation);
-  console.log(this.trip.arrivalLocation);
-  console.log(this.trip.departDate);
-  console.log(this.trip.departHour);
-  console.log(this.trip.creditPrice);
-
-this.authService.getUser().subscribe({ // Souscription à l'observable getUser() pour récupérer l'utilisateur connecté
-    next: (driver) => { 
-      this.trip.driver = driver; // Stocke l'utilisateur récupéré
-      this.cars = driver.cars.model;
-      
-    },
-    error: (err) => {
-      console.error("Erreur", err);
-    }
-  });
   
-  this.service.addTrip(this.trip).subscribe();
-}
+
+  onSubmit(): void {
+    this.authService.getUser().subscribe({
+      next: (driver) => {
+        this.trip.driver = driver;
+        this.trip.car = this.selectedCar;
+        //this.trip.arrivalDate= new Date(`${this.trip.arrivalDate} ${this.trip.arrivalHour}:00`);
+        
+        let arrivalDate=new Date(this.trip.arrivalDate);
+        let [arrivalHour, arrivalMinute] = `${this.trip.arrivalHour}`.split(':').map(Number);
+        console.log(arrivalHour)
+        console.log(arrivalMinute)
+        this.trip.arrivalDate=new Date(arrivalDate.setHours(arrivalHour, arrivalMinute, 0));
+        console.log(this.trip.arrivalDate)
+        
+        
+        let departDate=new Date(this.trip.departDate);
+        let [hour, minute] = `${this.trip.departHour}`.split(':').map(Number);
+        this.trip.departDate=new Date(departDate.setHours(hour, minute, 0));
+
+       
+        this.service.addTrip(this.trip).subscribe({
+
+          next: () => {
+            console.log("Trajet publié avec succès !");
+
+          },
+          error: (err) => {
+            console.error("Erreur lors de la publication du trajet :", err);
+          }
+        });
+      },
+      error: (err) => {
+        console.error("Erreur lors de la récupération de l'utilisateur :", err);
+      }
+    });
+  }
+  
 
 }

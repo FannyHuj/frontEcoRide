@@ -50,12 +50,13 @@
                     <input type="number" [(ngModel)]="trip.creditPrice" name="creditPrice" class="form-control" id="creditPrice" placeholder="Entrez le prix en crédits">
                     <div class="form-text text-success">2 crédits seront prélevés par la plateforme</div>
                 </div>
+                
                 <!-- Car -->
                 <div class="mb-3">
                     <label for="car" class="form-label">Véhicule</label>
                     <div class="d-flex align-items-center">
-                        <select class="form-select me-2" [(ngModel)]="trip.car" name="car" id="car">
-                            <option *ngFor="let car of cars" >{{car.model}}</option>
+                        <select class="form-select me-2" [(ngModel)]="selectedCar" name="selectedCar" id="selectedCar">
+                            <option *ngFor="let car of cars" [ngValue]="car" >{{car.model}}</option>
                         </select>
                         <button type="button" class="btn btn-outline-secondary" routerLink="/AddNewCar">+ Nouveau véhicule</button>
                     </div>
