@@ -6,7 +6,7 @@ export interface TripList {
     departDate:string;
     arrivalDate:string;
     creditPrice:number;
-    user:UserMin;
+    driver:UserMin;
     car:CarMin;
     placeNumber:number;
     departLocation:string;

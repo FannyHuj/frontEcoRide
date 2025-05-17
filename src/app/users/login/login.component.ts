@@ -4,6 +4,7 @@ import { Login } from '../../models/login';
 import {AuthService} from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -30,4 +31,7 @@ export class LoginComponent {
   closeAlert() {
     this.successMessage = null;
   }
+
+
+
 }

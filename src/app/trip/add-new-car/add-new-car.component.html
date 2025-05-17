@@ -31,8 +31,15 @@
                     </div>
                      <!-- Energy -->
                      <div class="col-md-6">
-                        <label for="energy" class="form-label">Energie</label>
-                        <input type="text" [(ngModel)]="car.energy" name="energy" class="form-control" id="energy" placeholder="Ex : Electrique">
+                        <label for="color" class="form-label">Energie</label>
+                        <select class="form-control" [(ngModel)]="car.energy" name="energy" id="energy" placeholder="Sélectionner l'energie">
+                            <option value="" disabled selected>Sélectionner l'énergie</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electrique</option>
+                             <option value="essence">Essence</option>
+                             <option value="hybrid">Hybride</option>
+                        </select>
+
                     </div>
                      <!-- Button -->
                 <button (click)="addNewCar()" type="submit" class="btn btn-success w-100">Ajouter le véhicule</button>

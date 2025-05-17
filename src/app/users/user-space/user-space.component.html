@@ -17,11 +17,27 @@
         <div class="card-body">
           <div class="container mb-4">
             <h3 class="fw-bold">Mon espace utilisateur</h3>
-            <p class="text-muted">Ravi de vous revoir <strong>{{ userConnected.lastName }}</strong> !</p>
+            <p class="text-muted">Ravi de vous revoir <strong>{{ userConnected.firstName }}</strong> !</p>
           </div>
-          <app-profile-type></app-profile-type>
-          <app-add-new-car></app-add-new-car>
-          <app-preferences></app-preferences>
+
+          <!--ROLE-->
+          <div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <h4>Type de profil</h4>
+                        <button (click)="passager()" type="button" class="btn btn-success m-1">Passager</button><button (click)="chauffeur()"  type="button" class="btn btn-success m-1">Chauffeur</button><button (click)="both()"  type="button" class="btn btn-success m-1">Les deux</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="role === 'chauffeur' || role === 'both'">
+  <app-add-new-car></app-add-new-car>
+  <app-preferences></app-preferences>
+</div>
           <div class="container mt-4">
             <button type="submit" class="btn btn-success w-100">Enregistrer les modifications</button>
           </div>

@@ -9,10 +9,24 @@
     <p><i class="bi bi-person-fill"></i><strong> Places disponibles :</strong> {{ trip.placeNumber }}</p>
     <p><i class="bi bi-cash"></i><strong> Prix :</strong> {{ trip.creditPrice }}€</p>
   </div>
-  <button (click)="onSubmit()" type="submit" class="btn btn-success w-100">Participer</button>
+  <button type="submit" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#confirmer">Participer</button>
 </div>
 
-
-
-
-
+<!-- Double confirmation -->
+<div class="modal fade" id="confirmer" tabindex="-1" aria-labelledby="confirmerLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmerLabel">Confirmer votre participation au voyage</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir participer à ce voyage ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" (click)="onSubmit()" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>

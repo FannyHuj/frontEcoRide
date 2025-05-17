@@ -71,4 +71,8 @@ export const routes: Routes = [
         path: 'MentionsLegales', 
         component: MentionsLegalesComponent
     },
+    { 
+        path: 'createEmployee', 
+        component: SignInComponent
+    },
 ];

@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import {AddNewCarComponent} from '../../trip/add-new-car/add-new-car.component';
 import { Car } from '../../models/car';
-import { ProfileTypeComponent } from '../profile-type/profile-type.component';
 import { PreferencesComponent } from '../preferences/preferences.component';
 import { Trip } from '../../models/trip';
 import { CommonModule } from '@angular/common';
@@ -20,7 +19,7 @@ import { ReportTripService } from '../../services/report-trip.service';
 
 @Component({
   selector: 'app-user-space',
-  imports: [AddNewCarComponent,ProfileTypeComponent,PreferencesComponent,CommonModule,RouterModule,StatusTripPipe,FormsModule,FilterTripHistoricPipe],
+  imports: [AddNewCarComponent,PreferencesComponent,CommonModule,RouterModule,StatusTripPipe,FormsModule,FilterTripHistoricPipe],
   templateUrl: './user-space.component.html',
   styleUrl: './user-space.component.css'
 })
@@ -106,5 +105,24 @@ export class UserSpaceComponent {
     this.tripService.startTrip(trip.id).subscribe();
     
   }
+
+  role:string = "";
+
+  passager(): void {
+    this.role = "passager";
+  }
+
+  chauffeur(): void {
+    this.role = "chauffeur";
+  }
+
+  both(): void {
+    this.role = "both";
+  }
+
+
+
+
+
 
 }  

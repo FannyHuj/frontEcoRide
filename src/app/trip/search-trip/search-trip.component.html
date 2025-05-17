@@ -28,7 +28,7 @@
 </form>
 
  <!-- Filters -->
- <div class="container mt-5">
+<div class="container mt-5">
   <form class="d-flex flex-wrap align-items-center mb-5" style="background-color: #ffffff; border-radius: 10px; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
     <!-- Trip duration -->
     <div class="p-2 flex-fill">
@@ -36,7 +36,7 @@
         <div class="input-group-text" style="background-color: #e9ecef;">
           <i class="bi bi-clock" style="font-size: 1.2rem; color: #6c757d;"></i>
         </div>
-        <input type="text" class="form-control" id="duration" placeholder="Durée">
+        <input type="number" class="form-control" id="duration" placeholder="Durée max (minutes)" [(ngModel)]="filters.duration" name="duration">
       </div>
     </div>
     <!-- Price max -->
@@ -45,7 +45,7 @@
         <div class="input-group-text" style="background-color: #e9ecef;">
           <i class="bi bi-cash" style="font-size: 1.2rem; color: #6c757d;"></i>
         </div>
-        <input type="text" class="form-control" id="price" placeholder="Prix">
+        <input type="number" class="form-control" id="price" placeholder="Prix max" [(ngModel)]="filters.maxPrice" name="maxPrice">
       </div>
     </div>
     <!-- Note -->
@@ -54,20 +54,20 @@
         <div class="input-group-text" style="background-color: #e9ecef;">
           <i class="bi bi-star" style="font-size: 1.2rem; color: #6c757d;"></i>
         </div>
-        <select class="form-select" id="rating">
-          <option selected>Note</option>
-          <option value="1">1/5</option>
-          <option value="2">2/5</option>
-          <option value="3">3/5</option>
-          <option value="4">4/5</option>
-          <option value="5">5/5</option>
+        <select class="form-select" id="rating" [(ngModel)]="filters.rating" name="rating">
+          <option [ngValue]="null">Note</option>
+          <option [ngValue]="1">1/5</option>
+          <option [ngValue]="2">2/5</option>
+          <option [ngValue]="3">3/5</option>
+          <option [ngValue]="4">4/5</option>
+          <option [ngValue]="5">5/5</option>
         </select>
       </div>
     </div>
     <!-- Electric car -->
     <div class="p-2 flex-fill">
       <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="electric">
+        <input class="form-check-input" type="checkbox" id="electric" [(ngModel)]="filters.electricCar" name="electricCar">
         <label class="form-check-label" for="electric">
           <i class="bi bi-electric" style="font-size: 1.2rem; color: #6c757d;"></i> Électrique
         </label>
@@ -75,7 +75,7 @@
     </div>
     <!-- Button -->
     <div class="p-2 flex-fill d-flex justify-content-end">
-      <button type="submit" class="btn btn-success" style="background-color: #4CAF50;">Valider</button>
+      <button (click)="onFilter()" type="button" class="btn btn-success" style="background-color: #4CAF50;">Valider</button>
     </div>
   </form>
 </div>

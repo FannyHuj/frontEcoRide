@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { TripSearch } from '../../models/trip-search';
 import { TripList } from '../../models/trip-list';
 import { Statistics } from '../../models/statistics';
+import { TripsFilters } from '../../models/trips-filters';
+import { Car } from '../../models/car';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,9 @@ export class TripService {
     return this.http.post<TripList[]>('http://localhost:8000/api/searchTrip', tripSearch);
   }
   
+  searchWithFilters(filterSearch: TripsFilters): Observable<TripList[]> {
+    return this.http.post<TripList[]>('http://localhost:8000/api/searchTripFilter', filterSearch);
+  }
 
   findOne(id:number): Observable<Trip> {
     return this.http.get<Trip>(`http://localhost:8000/api/trip/${id}`);
@@ -52,6 +57,4 @@ export class TripService {
   startTrip(id:number): Observable<Trip> {
     return this.http.put<Trip>(`http://localhost:8000/api/start/trip/${id}`,{});
   }
-  
-
 }

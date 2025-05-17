@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/user';
 import { TripService } from '../../trip/services/trip.service';
-import { RoleType } from '../../models/roleType';
 import { UsersService } from '../../services/users.service';
+import { RoleType } from '../../models/roleType';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,9 +14,18 @@ import { UsersService } from '../../services/users.service';
 })
 export class SignInComponent {
   user:User= {} as User;
-   constructor (private tripService: TripService, private userService : UsersService){} // Injection du service pour utiliser la fonction signIn()
+  role:RoleType[] =[] as RoleType[]
+   constructor ( private userService : UsersService, private authService:AuthService){
+      if(this.authService.getUser()==null){
+       this.role.push(RoleType.USER)
+      }else if(this.authService.hasRole([RoleType.ADMIN])){
+         this.role.push(RoleType.EMPLOYE)
+      }
+      this.user.roles = this.role;
+   } // Injection du service pour utiliser la fonction signIn()
   
    newUser(){
+    
     this.userService.newUser(this.user).subscribe(); // Envoie du compte crée à PHP
   }
 

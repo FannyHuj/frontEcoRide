@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TripSearch } from '../../models/trip-search';
 import { TripList } from '../../models/trip-list';
+import { TripsFilters } from '../../models/trips-filters';
 
 @Component({
   selector: 'app-search-trip',
@@ -15,8 +16,11 @@ import { TripList } from '../../models/trip-list';
   styleUrls: ['./search-trip.component.css'],
 })
 export class SearchTripComponent {
-  searchTrip: TripSearch  = {} as TripSearch ; // Objet Trip pour stocker la recherche
-  trips: TripList[] = []; // Liste des trajets trouvés
+  searchTrip: TripSearch  = {} as TripSearch ; // Objet Trip pour stocker la recherche initial sans filtre
+  filters: TripsFilters = {} as TripsFilters;// Objet Filtres pour stocker la recherche avec filtres
+
+  trips: TripList[] = []; // Liste des trajets trouvés sans filtres
+  filteredTrips: TripList[] = []; // Liste des trajets trouvés avec filtres
 
   @Output() tripsFound = new EventEmitter<TripList[]>(); // Émetteur d'événement pour transmettre les trajets trouvés
 
@@ -28,5 +32,14 @@ export class SearchTripComponent {
       this.trips = data; // Stockage des trajets récupérés depuis l'API
     });
   }
+
+  // Méthode pour filtrer les trajets
+
+   onFilter() {
+    this.service.searchWithFilters(this.filters).subscribe((data: TripList[]) => {
+      this.filteredTrips = data; // Stockage des trajets récupérés depuis l'API
+    });
+  }
+
 }
 

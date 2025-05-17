@@ -4,10 +4,12 @@ import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
 import { RoleType } from '../../models/roleType';
+import { SignInComponent } from '../sign-in/sign-in.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-space',
-  imports: [AdmimTripChartComponent,CommonModule],
+  imports: [AdmimTripChartComponent,CommonModule,SignInComponent,RouterLink],
   templateUrl: './admin-space.component.html',
   styleUrl: './admin-space.component.css'
 })

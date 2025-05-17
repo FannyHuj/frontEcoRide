@@ -7,6 +7,8 @@ import { Auth } from '../models/auth';
 import { RoleType } from '../models/roleType';
 import { User } from '../models/user';
 import {jwtDecode} from 'jwt-decode';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,8 @@ export class AuthService {
 
   token:string |null = null;
   private currentUser: User | null = null;
+  private isUserLogged:boolean =false;
+ 
 
   constructor(private cookieService: CookieService, private http:HttpClient) { }
 
@@ -26,11 +30,16 @@ export class AuthService {
     return this.cookieService.get('jwtToken');
   }
 
-  deleteToken() {
-    this.cookieService.delete('jwtToken'); // Supprime le token JWT stocké dans les cookies. Permet à un utilisateur de se déconnecter en supprimant son token d'authentification.
-  }
+
   login(login:Login):Observable<Auth>{
+     this.isUserLogged=true;
       return this.http.post<Auth>('http://localhost:8000/api/login_check',login)
+     
+    }
+
+  logout(){
+      this.cookieService.delete('jwtToken');
+       this.isUserLogged=false;
     }
 
   hasRole(requiredRoles: RoleType[]): boolean {
@@ -58,6 +67,10 @@ export class AuthService {
     return this.http.get(`http://localhost:8000/api/user/${tokenInfo.username}`) // envoie le user à PHP
 
   };
+
+ isUserConnected():boolean{
+     return this.isUserLogged;
+    }
 
   
   

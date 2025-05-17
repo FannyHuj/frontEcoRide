@@ -52,8 +52,3 @@ export class TripDetailsComponent {
   }
 
   }
-
- 
-
-
-
