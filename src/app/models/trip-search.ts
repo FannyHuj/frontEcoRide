@@ -3,4 +3,5 @@ export interface TripSearch {
     departLocation:string;
     arrivalLocation:string;
     placeNumber:number;
+
 }

@@ -74,7 +74,7 @@
                   <button (click)="setSelectedTrip(trip)" *ngIf="isDriver(trip) && trip.status === 'inProgress'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#terminate">
                     Terminer le voyage
                   </button>
-                  <button (click)="startTrip(trip)" *ngIf="isDriver(trip) && trip.status=== 'coming'" type="button" class="btn btn-success">
+                  <button (click)="setSelectedTrip(trip)" *ngIf="isDriver(trip) && trip.status=== 'coming'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#start">
                     Commencer le voyage
                   </button>
                   <button (click)="setSelectedTrip(trip)" *ngIf="trip.status == 'coming'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#annuler">
@@ -225,6 +225,26 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
         <button (click)="terminateTrip()" type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Start Trip-->
+<div class="modal fade" id="start" tabindex="-1" aria-labelledby="startLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="startLabel">Commencer le voyage</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir commencer ce voyage ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" (click)="startTrip()" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
       </div>
     </div>
   </div>

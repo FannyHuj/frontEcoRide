@@ -81,13 +81,13 @@
           <div class="float-start">
             <i class="bi bi-ev-front-fill p-2 text-white"></i>
             <img
-              src={{trip.user.picture}}
+              src={{trip.driver.picture}}
               class="rounded-circle"
               alt="Profile"
               style="width: 32px; height: 32px"
             />
             <i class="bi bi-star-fill p-2 text-white"></i>
-            {{trip.user.notation}}
+            {{trip.driver.notation}}
           </div>
  
          <!-- Footer -->
@@ -95,7 +95,7 @@
            <div class="d-flex align-items-center">
              <i class="fas fa-user-friends text-muted mr-2"></i>
              <span class="text-muted">{{ trip.placeNumber }} places restantes</span>
-             <span>{{trip.user.notation}}</span>
+             <span>{{trip.driver.notation}}</span>
            </div>
         
            <button class="btn btn-success" [routerLink]="['/tripDetails', trip.id ]">Voir le trajet</button>

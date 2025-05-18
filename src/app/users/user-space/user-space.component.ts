@@ -100,10 +100,8 @@ export class UserSpaceComponent {
     
   }
 
-  startTrip(trip:Trip){
-    
-    this.tripService.startTrip(trip.id).subscribe();
-    
+  startTrip(){
+    this.tripService.startTrip(this.selectedTrip.id).subscribe();
   }
 
   role:string = "";

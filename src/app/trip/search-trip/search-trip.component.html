@@ -135,6 +135,13 @@
               <i class="fas fa-user-friends text-muted mr-2"></i>
               <span class="text-muted">{{ trip.placeNumber }} places restantes</span>
             </div>
+
+            <div class="d-flex align-items-center">
+             
+                <img class="img-picture me-2" [src]="'http://localhost:8000/assets/images/' + trip.driver.picture" />
+                <span class="text-muted me-2">{{ trip.driver.firstName }}</span>
+                <i class="fas fa-star me-1" style="color: #FFD700;"></i>
+                <span class="text-muted">{{ trip.driver.notation }}</span>
          
             <button class="btn btn-success" [routerLink]="['/tripDetails', trip.id ]">Voir le trajet</button>
           </div>

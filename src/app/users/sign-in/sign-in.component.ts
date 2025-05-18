@@ -15,6 +15,10 @@ import { AuthService } from '../../services/auth.service';
 export class SignInComponent {
   user:User= {} as User;
   role:RoleType[] =[] as RoleType[]
+   fileName = '';
+  avatar:File = {} as File;
+ 
+
    constructor ( private userService : UsersService, private authService:AuthService){
       if(this.authService.getUser()==null){
        this.role.push(RoleType.USER)
@@ -25,13 +29,38 @@ export class SignInComponent {
    } // Injection du service pour utiliser la fonction signIn()
   
    newUser(){
+
+    const formData = new FormData();
+    console.log(this.avatar);
+
+            formData.append("picture", this.avatar);
+            formData.append("lastName", this.user.lastName);
+            formData.append("firstName", this.user.firstName);
+            formData.append("password", this.user.password);
+            formData.append("phoneNumber", this.user.phoneNumber);
+            formData.append("address", this.user.address);
+            formData.append("birthDate", this.user.birthDate);
+            formData.append("email", this.user.email);
+
     
-    this.userService.newUser(this.user).subscribe(); // Envoie du compte crée à PHP
+    this.userService.newUser(formData).subscribe(); // Envoie du compte crée à PHP
   }
 
   //validatePassword(password:string){
   //  let pattern=new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_+=~]).{8,}$'); // verification mot de passe
   //  return pattern.test(password);
   //}
+
+   onFileSelected(event:any) {
+
+        this.avatar = event.target.files[0];
+
+        if (this.avatar) {
+
+            this.fileName = this.avatar.name;
+
+            
+        }
+      }
 
 }

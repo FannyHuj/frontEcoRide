@@ -27,7 +27,7 @@ export class UsersService {
     return this.http.put(`http://localhost:8000/api/user/reactivate/${id}`,{});
   }
 
-  newUser(user:User):Observable<User>{
-      return this.http.post<User>('http://localhost:8000/newUser',user);
+  newUser(user:FormData):Observable<any>{
+      return this.http.post('http://localhost:8000/newUser',user);
     }
 }

@@ -1,10 +1,11 @@
 import { Car } from "./car";
 import { Review } from "./review";
 import { RoleType } from "./roleType";
+import { Trip } from "./trip";
 
 export interface User {
     id:number;
-    trip: any;
+    trip: Trip;
     lastName:string;
     firstName:string;
     email:string;

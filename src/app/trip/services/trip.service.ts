@@ -30,6 +30,10 @@ export class TripService {
     return this.http.post<TripList[]>('http://localhost:8000/api/searchTrip', tripSearch);
   }
   
+  // searchWithFilters(filterSearch: TripsFilters): Observable<TripList[]> {
+  //   return this.http.post<TripList[]>('http://localhost:8000/api/searchTripFilter', filterSearch);
+  // }
+
   searchWithFilters(filterSearch: TripsFilters): Observable<TripList[]> {
     return this.http.post<TripList[]>('http://localhost:8000/api/searchTripFilter', filterSearch);
   }
