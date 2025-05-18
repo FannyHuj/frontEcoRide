@@ -45,7 +45,7 @@
         <div class="input-group-text" style="background-color: #e9ecef;">
           <i class="bi bi-cash" style="font-size: 1.2rem; color: #6c757d;"></i>
         </div>
-        <input type="number" class="form-control" id="price" placeholder="Prix max" [(ngModel)]="filters.maxPrice" name="maxPrice">
+        <input type="number" class="form-control" id="price" placeholder="Prix max" (blur)="onClick()" [(ngModel)]="searchTrip.maxPrice" name="maxPrice">
       </div>
     </div>
     <!-- Note -->
@@ -67,7 +67,7 @@
     <!-- Electric car -->
     <div class="p-2 flex-fill">
       <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="electric" [(ngModel)]="filters.electricCar" name="electricCar">
+        <input class="form-check-input" type="checkbox" id="electric" [(ngModel)]="searchTrip.isEcologic" (change)="onClick()" name="electricCar">
         <label class="form-check-label" for="electric">
           <i class="bi bi-electric" style="font-size: 1.2rem; color: #6c757d;"></i> Électrique
         </label>
@@ -75,7 +75,7 @@
     </div>
     <!-- Button -->
     <div class="p-2 flex-fill d-flex justify-content-end">
-      <button (click)="onFilter()" type="button" class="btn btn-success" style="background-color: #4CAF50;">Valider</button>
+      <button  type="button" class="btn btn-success" style="background-color: #4CAF50;">Valider</button>
     </div>
   </form>
 </div>

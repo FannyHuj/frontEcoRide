@@ -24,22 +24,27 @@ export class SearchTripComponent {
 
   @Output() tripsFound = new EventEmitter<TripList[]>(); // Émetteur d'événement pour transmettre les trajets trouvés
 
-  constructor(private service: TripService) {} // Injection du service TripService
+  constructor(private service: TripService) {
+    this.searchTrip.maxPrice = 0; // Initialisation de maxPrice à 0
+    this.searchTrip.notation = 0; // Initialisation de notation à 0
+
+    this.searchTrip.isEcologic = false; // Initialisation de isEcologic à false
+  } // Injection du service TripService
 
   // Méthode pour rechercher les trajets
   onClick() {
-    this.service.searchTrip(this.searchTrip).subscribe((data: TripList[]) => {
+    this.service.searchWithFilters(this.searchTrip).subscribe((data: TripList[]) => {
       this.trips = data; // Stockage des trajets récupérés depuis l'API
     });
   }
 
   // Méthode pour filtrer les trajets
 
-   onFilter() {
-    this.service.searchWithFilters(this.filters).subscribe((data: TripList[]) => {
-      this.filteredTrips = data; // Stockage des trajets récupérés depuis l'API
-    });
-  }
+  //  onFilter() {
+  //   this.service.searchWithFilters(this.filters).subscribe((data: TripList[]) => {
+  //     this.filteredTrips = data; // Stockage des trajets récupérés depuis l'API
+  //   });
+  // }
 
 }
 
