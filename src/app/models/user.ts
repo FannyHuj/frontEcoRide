@@ -19,5 +19,5 @@ export interface User {
     roles:RoleType[];
     review:Review [];
     credit:number;
-    isActive:boolean;
+    active:boolean;
 }

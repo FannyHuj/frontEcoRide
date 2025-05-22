@@ -1,69 +1,117 @@
-
 <div class="d-flex align-items-start">
      <!-- Sidebar Navigation -->
   <div class="nav flex-column nav-pills me-3 p-3 bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="min-width: 220px; height: 100vh;">
 
-    <button class="nav-link text-success border-success text-start mb-2" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+    <button (click)="loadReviews()" class="nav-link text-success border-success text-start mb-2" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
       Avis en attente
     </button>
-    <button class="nav-link text-success border-success text-start mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+    <button (click)="loadReports()" class="nav-link text-success border-success text-start mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
       Signalements
     </button>
   </div>
+<!-- Success alert -->
+        <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+          {{ successMessage }}
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+        </div>
 
+        <!-- Success alert -->
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+          {{ successMessage }}
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorAlert()"></button>
+        </div>
 
     <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
             <table class="table table-bordered table-striped">
                 <thead>
-                  <tr>
+                  <tr >
                     <th>Numéro de trajet</th>
-                    <th>Chauffeur</th>
+                    <th>Utilisateur</th>
                     <th>Note</th>
                     <th>Avis</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>#12345</td>
-                    <td>Jean Dupont</td>
-                    <td><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></td>
-                    <td>Très bon trajet</td>
-                    <td><button type="button" class="btn btn-danger m-1">Refuser</button> <button type="button" class="btn btn-success m-1">Valider</button></td>
+                  <tr *ngFor="let r of reviews">
+                    <td>{{r.tripId}}</td>
+                    <td>{{r.ownerId.firstName}} {{r.ownerId.lastName}}</td>
+                    <td><i class="bi bi-star-fill"></i>{{r.notation}}/5</td>
+                    <td>{{r.comment}}</td>
+                    <td>{{r.publish ? 'accepté' : 'refusé'}}</td>
+                    <td>
+                      <button (click)="setSelectedReview(r)" type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#refuser">Refuser</button> 
+                      <button (click)="setSelectedReview(r)" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#confirmer">Valider</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
         </div>
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-            <div class="card">
-                <div class="card-body">
-                  Trajet #12347 - Signalements
-                  <br><br>
-                  <div class="card">
-                    <div class="card-body">
-                        <ul>
-                            <li>Date : 22 décembre 2024</li>
-                            <li>Trajet : Paris - Lyon</li>
-                            <li>Chauffeur : Jean D. (jean.d&#64;email.com)</li>
-                            <li>Passager : Marie L. (marie.l&#64;email.com)</li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <div class="card">
-                <div class="card-body">
-                    Description du problème
-                  <br><br>
-                  <div class="card">
-                    <div class="card-body">
-                        Le chauffeur est arrivé avec 30 minutes de retard
-                    </div>
-                  </div>
-                </div>
+            
+            <table class="table table-bordered table-striped">
+                <thead>
+                  <tr >
+                    <th>Signalement numéro</th>
+                    <th>Date</th>
+                    <th>Trajet</th>
+                    <th>Chauffeur</th>
+                    <th>Passager</th>
+                    <th>Description du problème:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let report of reports">
+                    <td>{{report.idTrip.id}}</td>
+                    <td>{{report.date}}</td>
+                    <td>{{report.idTrip.departLocation}} -> {{report.idTrip.arrivalLocation}}</td>
+                    <td>{{report.idTrip.driver.firstName}} {{report.idTrip.driver.lastName}} {{report.idTrip.driver.email}}</td>
+                    <td>{{report.reportOwner.firstName}} {{report.reportOwner.lastName}} {{report.reportOwner.email}}</td>
+                    <td>{{report.detail}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
               </div>
 
-             
-              </div>
+
+        <!-- Modal Refuser -->
+<div class="modal fade" id="refuser" tabindex="-1" aria-labelledby="refuserLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="refuserLabel">Refuser l'avis</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir refuser cet avis?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" (click)="changeReviewStatus(selectedReview.id,false)" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <!-- Modal Confirmer -->
+<div class="modal fade" id="confirmer" tabindex="-1" aria-labelledby="confirmerLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmerLabel">Valider l'avis</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir valider cet avis?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" (click)="changeReviewStatus(selectedReview.id,true)" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
+

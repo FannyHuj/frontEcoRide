@@ -1,6 +1,6 @@
-<div class="d-flex align-items-start">
+<div class="d-flex align-items-start ">
   <!-- Sidebar Navigation -->
-  <div class="nav flex-column nav-pills me-3 p-3 bg-light shadow-sm rounded-start" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="min-width: 220px; height: 100vh;">
+  <div class="nav flex-column nav-pills me-3 p-3 bg-light shadow-sm rounded-start " id="v-pills-tab" role="tablist" aria-orientation="vertical" style="min-width: 220px; height: 100vh;">
     <button class="nav-link text-success border-success text-start mb-2 active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
       Mon profil
     </button>
@@ -10,7 +10,7 @@
   </div>
 
   <!-- Content panes -->
-  <div class="tab-content w-100 p-4" id="v-pills-tabContent">
+  <div class="tab-content w-100 p-4 " id="v-pills-tabContent">
     <!-- Onglet profil -->
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
       <div class="card shadow rounded">
@@ -189,8 +189,8 @@
           </div>
           <div class="card-body">
             <div class="mb-3">
-              <p>Nom du conducteur concerné : {{report.driver}}</p>
-              <p>Numéro du trajet concerné : {{report.idTrip}}</p>
+              <p>Nom du conducteur concerné : {{selectedTrip.driver.lastName}}</p>
+              <p>Numéro du trajet concerné : {{selectedTrip.id}}</p>
             </div>
             <form>
               <div class="mb-3">

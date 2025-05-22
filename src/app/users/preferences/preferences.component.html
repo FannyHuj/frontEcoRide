@@ -1,13 +1,39 @@
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-body">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <h4>Préférences</h4>
-                        <button type="button" class="btn btn-success m-1">Non-fumeur</button><button type="button" class="btn btn-success m-1">Fumeur</button>
-                        <button type="button" class="btn btn-success m-1">Sans animal</button><button type="button" class="btn btn-success m-1">Animaux OK</button>
-                    </div>
-                </div>
+  <div class="container mt-5">
+      <div class="card">
+          <div class="card-body">
+                  <div class="row g-3">
+                      <div class="col-md-6">
+                          <h4>Préférences</h4>
+                          <input type="checkbox" class="btn btn-success m-1" [(ngModel)]="preference.smoking"/> Fumeur
+                          <input type="checkbox" class="btn btn-success m-1" [(ngModel)]="preference.animals" />Avec animal
+                          <br>
+                          <span class="badge-pill badge-primary" *ngFor="let tag of preference.tags">{{tag}} </span>
+                          <br>
+                          <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#addPreference">Ajouter des préférences</button>
+                      </div>
+                  </div>
+          </div>
+      </div>
+  </div>
+
+
+    <!-- Modal add preference -->
+    <div class="modal fade" id="addPreference" tabindex="-1" aria-labelledby="addPreferenceLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addPreferenceLabel">Ajouter des préférences</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="addTag()"></form>
+            <input type="text" [(ngModel)]="tag" placeholder="entrer la nouvelle préférence"/> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Confirmer</button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+

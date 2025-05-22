@@ -1,7 +1,14 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5 w-50 mx-auto">
     <div class="card">
         <div class="card-body">
-            <form>
+            <!-- ALERTS -->
+            <div *ngIf="successMessage" class="alert alert-success" role="alert">
+                {{ successMessage }}
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                {{ errorMessage }}
+            </div>
+            <form  (ngSubmit)="newUser($event)" enctype="multipart/form-data">
                 <div class="row g-3 flex-column">
 
                     <!-- Picture -->
@@ -49,15 +56,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <p>Le mot de passe doit contenir :</p>
-                        <ul>
-                            <li>Au moins 8 caractères</li>
-                            <li>Une majuscule et une minuscule</li>
-                            <li>Un chiffre et un caractère spécial</li>
-                        </ul>
-                    </div>
-
                     <!-- Address -->
                     <div class="col-md-12">
                         <label for="address" class="form-label">Adresse</label>
@@ -87,7 +85,8 @@
 
                     <!-- Submit -->
                     <div class="col-md-12">
-                        <button (click)="newUser()" type="submit" class="btn btn-success w-100">Suivant</button>
+                        
+                        <button  type="submit" class="btn btn-success w-100">Suivant</button>
                     </div>
 
                     <!-- Already registered -->

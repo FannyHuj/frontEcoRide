@@ -28,6 +28,15 @@ export class UsersService {
   }
 
   newUser(user:FormData):Observable<any>{
-      return this.http.post('http://localhost:8000/newUser',user);
+      return this.http.post('http://localhost:8000/api/newUser',user);
     }
+
+   getUserProfile(id:number):Observable<any>{
+      return this.http.get('http://localhost:8000/api/user/profile/${id');
+    }
+
+    getAllEmployee(): Observable<User[]> {
+      return this.http.get<User[]>('http://localhost:8000/api/getAllEmployee');
+    }
+
 }

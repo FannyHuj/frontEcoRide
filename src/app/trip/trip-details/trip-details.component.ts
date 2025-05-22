@@ -5,6 +5,7 @@ import { Trip } from '../../models/trip';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { UserProfileComponent } from '../../user-profile/user-profile.component';
 
 @Component({
   selector: 'app-trip-details',

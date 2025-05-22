@@ -1,3 +1,5 @@
+import { UserMin } from "./user-min";
+
 export interface Car {
     id:number;
     model:string;
@@ -6,6 +8,6 @@ export interface Car {
     color:string;
     first_registration_date:Date;
     brand:string;
-    driver:string;
+    driver:UserMin;
 
 }

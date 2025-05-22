@@ -1,9 +1,46 @@
 .custom-green {
-    background-color: #59C362 !important;
+    background-color: #71997d  !important;
     color: white;
 }
 
 .custom-green-header {
-    background-color: #4ea857 !important; 
+    background-color: #71997d  !important; 
     border-bottom: 2px solid white;
 }
+
+    .profile-pic {
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     border: 2px solid #208454 !important;
+    }
+    
+    .card {
+      border-radius: 15px;
+      transition: transform 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .review-list {
+      max-height: 150px;
+      overflow-y: auto;
+      padding-left: 20px;
+    }
+    
+    .review-list li {
+      margin-bottom: 8px;
+    }
+    
+    .rating {
+      color: #ffc107;
+    }
+    
+    .car-info {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }

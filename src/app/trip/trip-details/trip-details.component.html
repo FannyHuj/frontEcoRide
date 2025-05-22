@@ -1,16 +1,63 @@
-<div *ngIf="trip" class="card shadow-lg mx-auto mt-4 mb-5 custom-green" 
+<div *ngIf="trip" class="card shadow-sm border-light hover-shadow border-success w-50 mx-auto mt-4" 
      style="max-width: 500px;">
-  <div class="card-header text-center custom-green-header">
+  <div class="card-header text-center">
     <h2 class="mb-0">Détails du Trajet</h2>
   </div>
   <div class="card-body">
-    <p><i class="bi bi-geo-alt-fill"></i><strong> Départ :</strong> {{ trip.departLocation }} à {{ trip.departHour | date:'HH:mm' }}</p>
-    <p><i class="bi bi-geo-alt-fill"></i><strong> Arrivée :</strong> {{ trip.arrivalLocation }} à {{ trip.arrivalHour | date:'HH:mm' }}</p>
-    <p><i class="bi bi-person-fill"></i><strong> Places disponibles :</strong> {{ trip.placeNumber }}</p>
-    <p><i class="bi bi-cash"></i><strong> Prix :</strong> {{ trip.creditPrice }}€</p>
+    <p><i class="bi bi-geo-alt-fill"style="color:#0f5509;"></i><strong> Départ :</strong> {{ trip.departLocation }} à {{ trip.departDate | date: 'HH:mm' }}</p>
+    <p><i class="bi bi-geo-alt-fill"style="color:#0f5509;"></i><strong> Arrivée :</strong> {{ trip.arrivalLocation }} à {{ trip.arrivalDate | date: 'HH:mm' }}</p>
+    <p><i class="bi bi-person-fill"style="color:#0f5509;"></i><strong> Places disponibles :</strong> {{ trip.placeNumber }}</p>
+    <p><i class="bi bi-cash"style="color:#0f5509;"></i><strong> Prix :</strong> {{ trip.creditPrice }}€</p>
   </div>
   <button type="submit" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#confirmer">Participer</button>
 </div>
+
+ <!-- carte -->
+      <div class="col-12 mb-3">
+        <div class="card shadow-sm border-light hover-shadow border-success w-50 mx-auto mt-4 " style="max-width: 500px;">
+          <div class="row g-0">
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title d-flex justify-content-between align-items-center">
+                  <span> <img class="rounded-circle profile-pic" [src]="'http://localhost:8000/assets/images/' + trip.driver.picture" alt="Profile Picture"/></span>{{trip.driver.firstName}} {{trip.driver.lastName}}
+                  <span class="badge bg-success">
+                    <i class="fas fa-star me-1"></i>
+                    <span>{{trip.driver.notation}}/5</span>
+                  </span>
+                </h5>
+                
+                <div class="car-info mt-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span>
+                      <i class="fas fa-car me-1" style="color: #0f5509;"></i>
+                      Voiture
+                    </span>
+                    <span class="text-muted">{{ trip.car.brand}} {{ trip.car.model}}</span>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mt-2">
+                    <span>
+                      <i class="fas fa-gas-pump me-1" style="color: #0f5509;"></i>
+                      Énergie
+                    </span>
+                    <span class="text-muted">{{ trip.car.energy}}</span>
+                  </div>
+                </div>
+                
+                <h6 class="card-subtitle mb-2 mt-3">
+                  <i class="fas fa-comment-dots me-1" style="color:#0f5509;"></i>
+                  Avis du conducteur
+                </h6>
+                <ul class="review-list">
+                  <li *ngFor="let review of trip.driver.reviews">{{review.comment}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+
+
 
 <!-- Double confirmation -->
 <div class="modal fade" id="confirmer" tabindex="-1" aria-labelledby="confirmerLabel" aria-hidden="true">
@@ -30,3 +77,4 @@
     </div>
   </div>
 </div>
+

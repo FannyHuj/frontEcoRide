@@ -7,6 +7,7 @@ import { TripList } from '../../models/trip-list';
 import { Statistics } from '../../models/statistics';
 import { TripsFilters } from '../../models/trips-filters';
 import { Car } from '../../models/car';
+import { Dashboard } from '../../models/Dashboard';
 
 @Injectable({
   providedIn: 'root'
@@ -60,8 +61,12 @@ export class TripService {
     return this.http.post<any>(`http://localhost:8000/api/booking/trip/${id}/user/${userId}`,{});
   }
 
-  getStatistic(): Observable<Statistics> {
-    return this.http.get<Statistics>('http://localhost:8000/api/covoiturages/trip-per-day');
+  getChartInfo(): Observable<Statistics> {
+    return this.http.get<Statistics>('http://localhost:8000/api/trip/statistic');
+  }
+
+  getTotalInfo(): Observable<Dashboard> {
+    return this.http.get<Dashboard>('http://localhost:8000/api/trip/totalInfo');
   }
 
   terminatedTrip(id:number): Observable<Trip> {

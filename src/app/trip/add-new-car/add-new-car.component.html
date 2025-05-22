@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
-            <form>
+            <form (ngSubmit)="addNewCar()">
                 <div class="row g-3">
                     <h4>Informations du véhicule</h4>
                     <!-- Registration -->
@@ -42,7 +42,7 @@
 
                     </div>
                      <!-- Button -->
-                <button (click)="addNewCar()" type="submit" class="btn btn-success w-100">Ajouter le véhicule</button>
+                      <button type="submit" class="btn btn-success w-100">Ajouter le véhicule</button>
                 </div>
             </form>
         </div>

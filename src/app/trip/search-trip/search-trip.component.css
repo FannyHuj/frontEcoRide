@@ -9,24 +9,25 @@
   }
   
   .badge-success {
-    background-color: #00cc87 !important;
+    background-color: #71997d !important;
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 1.1rem;
   }
   
   .btn-success {
-    background-color: #00cc87 !important;
-    border-color: #00cc87 !important;
+    background-color: #71997d !important;
+    border-color: #71997d !important;
     padding: 8px 20px;
     border-radius: 20px;
   }
 
   .border-success {
-    border: 2px solid #00cc87 !important;
+    border: 2px solid #71997d !important;
   }
 
   .img-picture {
     border-radius: 50%;
+    border: 2px solid #71997d !important;
     width:60px;
   }

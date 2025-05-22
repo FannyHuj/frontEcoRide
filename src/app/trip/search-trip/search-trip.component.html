@@ -1,4 +1,5 @@
 <!-- Searchbar -->
+
 <form class="barreRecherche p-3 mt-4" style="background-color: #e0e0e0; border-radius: 10px;">
   <div class="row align-items-center">
     <div class="col-md-3 mb-3 d-flex align-items-center">
@@ -30,15 +31,7 @@
  <!-- Filters -->
 <div class="container mt-5">
   <form class="d-flex flex-wrap align-items-center mb-5" style="background-color: #ffffff; border-radius: 10px; padding: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <!-- Trip duration -->
-    <div class="p-2 flex-fill">
-      <div class="input-group">
-        <div class="input-group-text" style="background-color: #e9ecef;">
-          <i class="bi bi-clock" style="font-size: 1.2rem; color: #6c757d;"></i>
-        </div>
-        <input type="number" class="form-control" id="duration" placeholder="Durée max (minutes)" [(ngModel)]="filters.duration" name="duration">
-      </div>
-    </div>
+   
     <!-- Price max -->
     <div class="p-2 flex-fill">
       <div class="input-group">
@@ -48,22 +41,7 @@
         <input type="number" class="form-control" id="price" placeholder="Prix max" (blur)="onClick()" [(ngModel)]="searchTrip.maxPrice" name="maxPrice">
       </div>
     </div>
-    <!-- Note -->
-    <div class="p-2 flex-fill">
-      <div class="input-group">
-        <div class="input-group-text" style="background-color: #e9ecef;">
-          <i class="bi bi-star" style="font-size: 1.2rem; color: #6c757d;"></i>
-        </div>
-        <select class="form-select" id="rating" [(ngModel)]="filters.rating" name="rating">
-          <option [ngValue]="null">Note</option>
-          <option [ngValue]="1">1/5</option>
-          <option [ngValue]="2">2/5</option>
-          <option [ngValue]="3">3/5</option>
-          <option [ngValue]="4">4/5</option>
-          <option [ngValue]="5">5/5</option>
-        </select>
-      </div>
-    </div>
+ 
     <!-- Electric car -->
     <div class="p-2 flex-fill">
       <div class="form-check form-switch">
@@ -73,10 +51,7 @@
         </label>
       </div>
     </div>
-    <!-- Button -->
-    <div class="p-2 flex-fill d-flex justify-content-end">
-      <button  type="button" class="btn btn-success" style="background-color: #4CAF50;">Valider</button>
-    </div>
+    
   </form>
 </div>
 
@@ -84,7 +59,7 @@
   <!-- Show trips available -->
   <div class="row">
     <div *ngFor="let trip of trips" class="col-12 mb-3">
-      <div class="card shadow-sm border-light hover-shadow border-success">
+      <div class="card shadow-sm border-light hover-shadow border-success w-50 mx-auto">
         <div class="card-body">
 
           <!-- header with cities -->
@@ -94,7 +69,7 @@
                 <div>
                   <h4 class="mb-0 text-dark">
                     {{ trip.departLocation }}
-                    <i class="fas fa-arrow-right text-muted mx-2"></i>
+                    <i class="fas fa-arrow-right mx-2 text-success"></i>
                     {{ trip.arrivalLocation }}
                   </h4>
                 </div>
@@ -107,9 +82,8 @@
           <div class="row mb-3">
             <div class="col-6">
               <div class="d-flex align-items-center">
-                <i class="fas fa-clock text-success mr-2"></i>
                 <div>
-                  <small class="text-muted">Départ</small>
+                  <span class="text-muted"><i class="fas fa-clock text-success mr-2"></i> Départ</span>
                   <div class="font-weight-bold">
                     {{ trip.departDate | date: 'dd MMM' }} à {{ trip.departDate | date: 'HH:mm' }}
                   </div>
@@ -118,9 +92,8 @@
             </div>
             <div class="col-6">
               <div class="d-flex align-items-center">
-                <i class="fas fa-flag-checkered text-success mr-2"></i>
                 <div>
-                  <small class="text-muted">Arrivée</small>
+                  <span class="text-muted"><i class="fas fa-flag-checkered text-success mr-2"></i> Arrivée</span>
                   <div class="font-weight-bold">
                     {{ trip.arrivalDate | date: 'dd MMM' }} à {{ trip.arrivalDate | date: 'HH:mm' }}
                   </div>
@@ -131,21 +104,18 @@
   
           <!-- Footer -->
           <div class="d-flex justify-content-between align-items-center border-top pt-3">
-            <div class="d-flex align-items-center">
-              <i class="fas fa-user-friends text-muted mr-2"></i>
-              <span class="text-muted">{{ trip.placeNumber }} places restantes</span>
-            </div>
-
-            <div class="d-flex align-items-center">
+              <div class="d-flex align-items-center justify-content-start">
              
                 <img class="img-picture me-2" [src]="'http://localhost:8000/assets/images/' + trip.driver.picture" />
                 <span class="text-muted me-2">{{ trip.driver.firstName }}</span>
-                <i class="fas fa-star me-1" style="color: #FFD700;"></i>
+                <i class="fas fa-star text-success me-1"></i>
                 <span class="text-muted">{{ trip.driver.notation }}</span>
-         
+                <span class="text-muted ms-3"><i class="fas fa-user-friends text-success mr-2"></i> {{ trip.placeNumber }} places restantes</span>
+              </div>
             <button class="btn btn-success" [routerLink]="['/tripDetails', trip.id ]">Voir le trajet</button>
-          </div>
+          
         </div>
       </div>
     </div>
+  </div>
   </div>

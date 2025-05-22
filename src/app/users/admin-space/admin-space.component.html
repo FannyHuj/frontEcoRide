@@ -5,7 +5,7 @@
     <button class="nav-link text-success border-success text-start mb-2" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
       Tableau de bord
     </button>
-    <button class="nav-link text-success border-success text-start mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+    <button (click)="loadEmployee()" class="nav-link text-success border-success text-start mb-2" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
       Gestion des employés
     </button>
     <button (click)="loadUsers()"class="nav-link text-success border-success text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">
@@ -28,7 +28,7 @@
           <div class="card border-0 shadow-sm bg-light">
             <div class="card-body">
               <h6 class="text-muted mb-2">Nombre total d'utilisateurs</h6>
-              <h3 class="mb-0">8,549</h3>
+              <h3 class="mb-0">{{dashboard.totalUser}}</h3>
             </div>
             
           </div>
@@ -37,33 +37,29 @@
           <div class="card border-0 shadow-sm bg-light">
             <div class="card-body">
               <h6 class="text-muted mb-2">Nombre total de crédits gagnés</h6>
-              <h3 class="mb-0">$24,890</h3>
+              <h3 class="mb-0">${{dashboard.totalCredit}}</h3>
             </div>
           </div>
         </div>
       </div>
 
+ 
       <div class="row g-3 mb-4">
-        <div class="col-12 col-md-6 col-lg-6">
+       
           <div class="card border-0 shadow-sm bg-light">
             <div class="card-header bg-light border-0">
               <h6 class="text-muted mb-2">Nombre de covoiturages par jour</h6>
             </div>
-            <div class="card-body">
+
+
+            <div class="card-body align-items-center">
               <app-admim-trip-chart></app-admim-trip-chart>
             </div>
+
+
           </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-6">
-          <div class="card border-0 shadow-sm bg-light">
-            <div class="card-header bg-light border-0">
-              <h6 class="text-muted mb-2">Crédits gagnés par jour</h6>
-            </div>
-            <div class="card-body">
-              <app-admim-trip-chart></app-admim-trip-chart>
-            </div>
-          </div>
-        </div>
+        
+       
       </div>
     </div>
 
@@ -74,21 +70,28 @@
       <br /><br />
       <table class="table table-bordered table-striped">
         <thead>
-          <tr>
-            <th>ID</th>
+          <tr >
+            <th>Id</th>
             <th>Nom</th>
-            <th>Email</th>
-            <th>Statut</th>
+            <th>Prénom</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>#12345</td>
-            <td>Jean Dupont</td>
-            <td>jean.ecoride.com</td>
-            <td><button type="button" class="btn btn-success m-1">Actif</button></td>
-            <td><button type="button" class="btn btn-danger m-1">Suspendre</button><span><button type="button" class="btn btn-success m-1">Réactiver le compte</button></span></td>
+          <tr *ngFor="let user of loadEmployee()">
+            <td>{{user.id}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.firstName}}</td>
+            <td>
+              <button type="button" class="btn btn-success m-1">{{ user.active ? 'Actif' : 'Non actif' }}</button>
+              
+              </td>
+            <td>
+              <button (click)="suspendingMember(user.id)" type="button" class="btn btn-danger m-1">Suspendre</button>
+              <button (click)="reactivateMember(user.id)" type="button" class="btn btn-success m-1">Réactiver le compte</button>
+            </td>
+
           </tr>
         </tbody>
       </table>
@@ -100,7 +103,7 @@
       <h3>Gestion des utilisateurs</h3>
       <table class="table table-bordered table-striped">
         <thead>
-          <tr>
+          <tr >
             <th>ID</th>
             <th>Nom</th>
             <th>Email</th>
@@ -109,11 +112,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users">
+          <tr *ngFor="let user of loadUsers()">
             <td>{{user.id}}</td>
             <td>{{user.firstName}} {{user.lastName}}</td>
             <td>{{user.email}}</td>
-            <td><button type="button" class="btn btn-success m-1">{{ user.isActive ? 'Actif' : 'Non actif' }}</button></td>
+            <td><button type="button" class="btn btn-success m-1">{{ user.active ? 'Actif' : 'Non actif' }}</button></td>
             <td><button (click)="suspendingMember(user.id)" type="button" class="btn btn-danger m-1">Suspendre</button><span><button (click)="reactivateMember(user.id)" type="button" class="btn btn-success m-1">Réactiver le compte</button></span></td>
           </tr>
         </tbody>

@@ -22,7 +22,7 @@ export class AdmimTripChartComponent implements AfterViewInit {
   constructor(private tripService: TripService) {}
 
   ngAfterViewInit() {
-    this.tripService.getStatistic().subscribe((data) => {
+    this.tripService.getChartInfo().subscribe((data) => {
       this.statistics = data;
       this.initChart(this.statistics.day, this.statistics.tripsPerDay);
     });

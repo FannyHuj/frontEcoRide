@@ -16,6 +16,9 @@
             <a class="nav-link"  routerLink="/AddTrip">Proposer un trajet</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" routerLink="/{{getRole()}}">Mon espace</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" routerLink="/SignIn">S'inscire</a>
           </li>
           <li class="nav-item">
@@ -23,10 +26,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link"><button (click)="logout()"    class="btn btn-light btn-sm" >Se déconnecter</button></a>
-          </li>
-        
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/{{getRole()}}">Mon espace</a>
           </li>
         </ul>
       </div>

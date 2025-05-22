@@ -18,6 +18,7 @@ import { ReportTripService } from '../../services/report-trip.service';
 
 
 @Component({
+  standalone: true,
   selector: 'app-user-space',
   imports: [AddNewCarComponent,PreferencesComponent,CommonModule,RouterModule,StatusTripPipe,FormsModule,FilterTripHistoricPipe],
   templateUrl: './user-space.component.html',
@@ -26,7 +27,7 @@ import { ReportTripService } from '../../services/report-trip.service';
 export class UserSpaceComponent {
 
   userConnected = {} as User; // Déclaration de la variable userSpace qui va stocker l'utilisateur récupéré du token grâce à la fonction getUser()
-  carCreated = input<Car>({} as Car);
+
   trips:Trip[]=[];
   date=new Date();
   selectedTrip:Trip={}as Trip;
@@ -34,14 +35,10 @@ export class UserSpaceComponent {
   review:Review= {} as Review;
 
 
-  validateProfile(){
-    this.userConnected.cars.push(this.carCreated());
-  }
-
   constructor(private authService: AuthService, private tripService:TripService, private reviewService:ReviewService, private reportTripService: ReportTripService) { // Injection du service AuthService pour utiliser la fonction getUser()
     this.authService.getUser().subscribe({ // Souscription à l'observable getUser()
       next: (user) => {
-        this.userConnected = user; // Stocke l'utilisateur récupéré
+        this.userConnected = user; 
       },
       error: (err) => {
         console.error("Erreur", err);
@@ -63,6 +60,7 @@ export class UserSpaceComponent {
  // @Output() trip = new EventEmitter<Trip>();
 
   setSelectedTrip(trip : Trip) {
+    console.log(trip);
     this.selectedTrip=trip;
   }
 
@@ -78,7 +76,7 @@ export class UserSpaceComponent {
   validateReview(){
     this.review.publish=false;
     this.review.tripId=this.selectedTrip.id;
-    this.review.ownerId=this.userConnected.id;
+    this.review.ownerId.id=this.userConnected.id;
     this.reviewService.addReview(this.review).subscribe({ // Souscription à l'observable getUser()
       next: (user) => {
       },
@@ -95,10 +93,12 @@ export class UserSpaceComponent {
 
   reportTrip(){
     
-    this.report.idTrip=this.selectedTrip.id;
+    this.report.idTrip=this.selectedTrip;
     this.reportTripService.reportTrip(this.report).subscribe();
     
   }
+
+
 
   startTrip(){
     this.tripService.startTrip(this.selectedTrip.id).subscribe();
