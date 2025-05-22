@@ -6,7 +6,7 @@ import { Trip } from '../models/trip';
 })
 export class FilterTripHistoricPipe implements PipeTransform {
 
-  transform(trips: Trip[],type:string,userConnectedId:number): Trip[] {
+  transform(trips: Trip[],type:string): Trip[] {
 
     if(type==="myTrips"){
       return trips.filter(trip => trip.status!='done');

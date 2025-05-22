@@ -21,6 +21,7 @@ export class UserProfileComponent {
   userProfile: UserProfile= {} as UserProfile;
   
 
+  
   @Input()
     set id(id: number) {
       this.tripService.findOne(id).subscribe((data) => { // Conversion en number et appel API

@@ -15,6 +15,7 @@ import { ReviewService } from '../../services/review.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FilterTripHistoricPipe } from '../../pipe/filter-trip-historic.pipe';
 import { ReportTripService } from '../../services/report-trip.service';
+import { UserMin } from '../../models/user-min';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class UserSpaceComponent {
 
   trips:Trip[]=[];
   date=new Date();
-  selectedTrip:Trip={}as Trip;
+  selectedTrip:Trip={} as Trip;
   report:ReportTrip= {} as ReportTrip;
   review:Review= {} as Review;
 
@@ -44,11 +45,30 @@ export class UserSpaceComponent {
         console.error("Erreur", err);
       }
     });
+     this.selectedTrip={
+      id:0,
+      departDate:new Date(),
+      departHour:new Date(),
+      departLocation:"",
+      arrivalDate:new Date(),
+      arrivalHour:new Date(),
+      arrivalLocation:"",
+      status:"",
+      placeNumber:0,
+      creditPrice:0,
+      car:{} as Car,
+      driver:{} as UserMin
+     };
+   
   }
 
   loadTrips(){
+
+    
    this.tripService.getAllTripByUserId(this.userConnected.id).subscribe({
     next: (data) => {
+
+      
       this.trips = data; 
     },
     error: (err) => {

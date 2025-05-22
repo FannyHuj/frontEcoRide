@@ -19,6 +19,7 @@ export class SignInComponent {
   role:RoleType[] =[] as RoleType[]
    fileName = '';
   avatar:File = {} as File;
+  redirectUrl = '';
  
 successMessage: string = '';
   errorMessage: string = '';
@@ -45,6 +46,7 @@ successMessage: string = '';
         this.user = user;
         if(this.authService.hasRole([RoleType.ADMIN])){
           this.role.push(RoleType.EMPLOYE)
+          this.redirectUrl='/AdminSpace';
         }
         this.user.roles = this.role;
       },
@@ -55,12 +57,12 @@ successMessage: string = '';
   }else{
     console.log("user is null");
      this.role.push(RoleType.USER)
+      this.redirectUrl='/';
   }
 }
    newUser(event: Event){
 
     event.preventDefault();
-    console.log("COUCOU");
 
     const formData = new FormData();
     console.log(this.role);
@@ -80,11 +82,15 @@ successMessage: string = '';
           this.userService.newUser(formData).subscribe({
             next: (response) => {
               //afficher une notification de succès
-              this.successMessage = 'Utilisateur créé avec succès !';
+              //this.successMessage = 'Utilisateur créé avec succès !';
               
+              //faire une attente de 2 seconde
+              setTimeout(() => {
+                this.successMessage = 'Utilisateur créé avec succès !';
+              }, 2000);
               
               //rediriger l'utilisateur vers la page de d'accueil
-              this.router.navigate(['/']);
+              this.router.navigate([ this.redirectUrl]);
 
               console.log("User created successfully", response);
             },

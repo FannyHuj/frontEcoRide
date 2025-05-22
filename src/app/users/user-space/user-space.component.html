@@ -38,9 +38,7 @@
   <app-add-new-car></app-add-new-car>
   <app-preferences></app-preferences>
 </div>
-          <div class="container mt-4">
-            <button type="submit" class="btn btn-success w-100">Enregistrer les modifications</button>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -63,7 +61,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let trip of trips | filterTripHistoric:'myTrips':userConnected.id">
+              <tr *ngFor="let trip of trips | filterTripHistoric:'myTrips'">
                 <td>{{trip.id}}</td>
                 <td>{{ trip.departDate | date:'dd/MM/yyyy'  }}</td>
                 <td>{{ trip.departDate | date:'HH:mm' }}</td>
@@ -100,7 +98,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let trip of trips | filterTripHistoric:'historic':userConnected.id">
+              <tr *ngFor="let trip of trips | filterTripHistoric:'historic'">
                 <td>{{trip.id}}</td>
                 <td>{{ trip.departDate | date:'dd/MM/yyyy' }}</td>
                 <td>{{ trip.departDate | date:'HH:mm' }}</td>

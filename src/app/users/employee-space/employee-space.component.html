@@ -1,5 +1,5 @@
 <div class="d-flex align-items-start">
-     <!-- Sidebar Navigation -->
+<!-- Sidebar Navigation -->
   <div class="nav flex-column nav-pills me-3 p-3 bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="min-width: 220px; height: 100vh;">
 
     <button (click)="loadReviews()" class="nav-link text-success border-success text-start mb-2" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
@@ -15,7 +15,7 @@
           <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
         </div>
 
-        <!-- Success alert -->
+<!-- Success alert -->
         <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
           {{ successMessage }}
           <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorAlert()"></button>
@@ -77,7 +77,7 @@
               </div>
 
 
-        <!-- Modal Refuser -->
+<!-- Modal Refuser -->
 <div class="modal fade" id="refuser" tabindex="-1" aria-labelledby="refuserLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -96,7 +96,7 @@
   </div>
 </div>
 
-        <!-- Modal Confirmer -->
+<!-- Modal Confirmer -->
 <div class="modal fade" id="confirmer" tabindex="-1" aria-labelledby="confirmerLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

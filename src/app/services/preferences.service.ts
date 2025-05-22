@@ -10,7 +10,7 @@ export class PreferencesService {
 
   constructor(private http:HttpClient) { }
 
-   addPreferences(id:number): Observable<Preferences> {
-      return this.http.post<Preferences>(`http://localhost:8000/api/preferences/driver/${id}`,{});
+   addPreferences(id:number, preference: Preferences): Observable<Preferences> {
+      return this.http.post<Preferences>(`http://localhost:8000/api/preferences/driver/${id}`,preference);
     }
 }

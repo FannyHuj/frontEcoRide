@@ -8,7 +8,7 @@
             <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
                 {{ errorMessage }}
             </div>
-            <form  (ngSubmit)="newUser($event)" enctype="multipart/form-data">
+            <form #f="ngForm" (ngSubmit)="newUser($event)" enctype="multipart/form-data">
                 <div class="row g-3 flex-column">
 
                     <!-- Picture -->
@@ -16,17 +16,22 @@
                         <label for="firstName" class="form-label">Photo de profil</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input type="file" class="form-control" (change)="onFileSelected($event)"/>
+                            <input type="file" class="form-control" (change)="onFileSelected($event)" required />
                         </div>
                     </div>
 
-                    <!-- First name -->
+                    <!-- Prénom -->
                     <div class="col-md-12">
-                        <label for="firstName" class="form-label">Prénom</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input type="text" [(ngModel)]="user.firstName" name="firstName" class="form-control" id="firstName" placeholder="Saisissez votre prénom">
-                        </div>
+                    <label class="form-label">Prénom</label>
+                    <div class="input-group">
+                          <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" placeholder="Saisissez votre prénom"
+                            [(ngModel)]="user.firstName" name="firstName"
+                            required #firstNameRef="ngModel">
+                    </div>
+                    <div *ngIf="firstNameRef.invalid && firstNameRef.touched" class="text-danger">
+                        Prénom requis.
+                    </div>
                     </div>
                     
                     <!-- Last name -->
@@ -34,8 +39,11 @@
                         <label for="lastName" class="form-label">Nom</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input type="text" [(ngModel)]="user.lastName" name="lastName" class="form-control" id="lastName" placeholder="Saisissez votre nom">
+                            <input type="text" [(ngModel)]="user.lastName" name="lastName" class="form-control" id="lastName" placeholder="Saisissez votre nom" required #lastNameRef="ngModel">
                         </div>
+                        <div *ngIf="lastNameRef.invalid && lastNameRef.touched" class="text-danger">
+                        le nom est requis.
+                    </div>
                     </div>
                     
                     <!-- Email -->
@@ -43,7 +51,13 @@
                         <label for="email" class="form-label">Adresse email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
-                            <input type="email" [(ngModel)]="user.email" name="email" class="form-control" id="email" placeholder="Saisissez votre mail">
+                            <input type="email" class="form-control" placeholder="Email"
+                                                        [(ngModel)]="user.email" name="email"
+                                                        required #emailRef="ngModel">
+                        </div>
+
+                        <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger">
+                                Email valide requis.
                         </div>
                     </div>
 
@@ -52,7 +66,11 @@
                         <label for="password" class="form-label">Mot de passe</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-file-lock"></i></span>
-                            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
+                            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe" required minlength="8" #passwordRef="ngModel">
+                        </div>
+                        <div *ngIf="passwordRef.invalid && passwordRef.touched" class="text-danger">
+                            Mot de passe requis
+                            
                         </div>
                     </div>
 
@@ -70,8 +88,11 @@
                         <label for="birthDate" class="form-label">Date de naissance</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
-                            <input type="date" [(ngModel)]="user.birthDate" name="birthDate" class="form-control" id="birthDate">
+                            <input type="date" [(ngModel)]="user.birthDate" name="birthDate" class="form-control" id="birthDate" required #birthDateRef="ngModel">
                         </div>
+                        <div *ngIf="birthDateRef.invalid && birthDateRef.touched" class="text-danger">
+                          Date de naissance requise.
+                    </div>
                     </div>
 
                     <!-- Phone number -->
@@ -86,7 +107,7 @@
                     <!-- Submit -->
                     <div class="col-md-12">
                         
-                        <button  type="submit" class="btn btn-success w-100">Suivant</button>
+                        <button  type="submit" class="btn btn-success w-100" [disabled]="f.invalid">Suivant</button>
                     </div>
 
                     <!-- Already registered -->
