@@ -18,7 +18,7 @@ export class TripDetailsComponent {
   passengers: User[] = [] as User[];
   trip: Trip = {} as Trip;
   user: User= {} as User;
-  
+  apiURL = environment.apiURL; // URL de l'API
 
   @Input()
   set id(id: number) {

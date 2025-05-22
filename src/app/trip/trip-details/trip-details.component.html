@@ -21,7 +21,7 @@
                 <h5 *ngIf="trip.driver" class="card-title d-flex justify-content-between align-items-center">
   <span>
     <img class="rounded-circle profile-pic"
-     [src]="trip.driver.picture ? environment.apiURL + '/assets/images/' + trip.driver.picture : environment.apiURL + '/assets/images/default-profile.jpg'"
+     [src]="trip.driver.picture ? apiURL + '/assets/images/' + trip.driver.picture : apiURL + '/assets/images/default-profile.jpg'"
      alt="Profile Picture"/>
 
     {{trip.driver.firstName}} {{trip.driver.lastName}}
