@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Trip } from '../../models/trip';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TripSearch } from '../../models/trip-search';
 import { TripList } from '../../models/trip-list';
 import { Statistics } from '../../models/statistics';
-import { TripsFilters } from '../../models/trips-filters';
-import { Car } from '../../models/car';
 import { Dashboard } from '../../models/Dashboard';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,31 +14,25 @@ import { Dashboard } from '../../models/Dashboard';
 export class TripService {
 
 
-  
-
   constructor(private http:HttpClient) {}
   addTrip(trip:Trip):Observable<Trip>{
-    return this.http.post<Trip>('http://localhost:8000/api/trip',trip);
+    return this.http.post<Trip>(environment.apiURL+'/api/trip',trip);
   }
 
   getAllTrip(): Observable<Trip[]> {
-    return this.http.get<Trip[]>('http://localhost:8000/api/tripList');
+    return this.http.get<Trip[]>(environment.apiURL+'/api/tripList');
   }
 
   getAllTripByUserId(userId:number): Observable<Trip[]> {
-    return this.http.get<Trip[]>(`http://localhost:8000/api/findByUser/${userId}`);
+    return this.http.get<Trip[]>(environment.apiURL+`/api/findByUser/${userId}`);
   }
 
   searchTrip(tripSearch: TripSearch): Observable<TripList[]> {
-    return this.http.post<TripList[]>('http://localhost:8000/api/searchTrip', tripSearch);
+    return this.http.post<TripList[]>(environment.apiURL+'api/searchTrip', tripSearch);
   }
-  
-  // searchWithFilters(filterSearch: TripsFilters): Observable<TripList[]> {
-  //   return this.http.post<TripList[]>('http://localhost:8000/api/searchTripFilter', filterSearch);
-  // }
 
   searchWithFilters(tripSearch: TripSearch): Observable<TripList[]> {
-    return this.http.get<TripList[]>('http://localhost:8000/api/search', 
+    return this.http.get<TripList[]>(environment.apiURL+'/api/search', 
                                                                                    { params: 
                                                                                       { 'departLocation': tripSearch.departLocation, 
                                                                                         'departDate': tripSearch.departDate,
@@ -54,30 +47,30 @@ export class TripService {
   }
 
   findOne(id:number): Observable<Trip> {
-    return this.http.get<Trip>(`http://localhost:8000/api/trip/${id}`);
+    return this.http.get<Trip>(environment.apiURL+`/api/trip/${id}`);
   }
 
   booking(id:number, userId:number):Observable<any>{
-    return this.http.post<any>(`http://localhost:8000/api/booking/trip/${id}/user/${userId}`,{});
+    return this.http.post<any>(environment.apiURL+`/${id}/user/${userId}`,{});
   }
 
   getChartInfo(): Observable<Statistics> {
-    return this.http.get<Statistics>('http://localhost:8000/api/trip/statistic');
+    return this.http.get<Statistics>(environment.apiURL+'/api/trip/statistic');
   }
 
   getTotalInfo(): Observable<Dashboard> {
-    return this.http.get<Dashboard>('http://localhost:8000/api/trip/totalInfo');
+    return this.http.get<Dashboard>(environment.apiURL+'/api/trip/totalInfo');
   }
 
   terminatedTrip(id:number): Observable<Trip> {
-    return this.http.get<Trip>(`http://localhost:8000/api/terminate/${id}`);
+    return this.http.get<Trip>(environment.apiURL+`/api/terminate/${id}`);
   }
 
   cancelTrip(id:number, userId:number): Observable<Trip> {
-    return this.http.put<Trip>(`http://localhost:8000/api/cancel/trip/${id}/user/${userId}`,{});
+    return this.http.put<Trip>(environment.apiURL+`/${id}/user/${userId}`,{});
   }
 
   startTrip(id:number): Observable<Trip> {
-    return this.http.put<Trip>(`http://localhost:8000/api/start/trip/${id}`,{});
+    return this.http.put<Trip>(environment.apiURL+`/api/start/trip/${id}`,{});
   }
 }
