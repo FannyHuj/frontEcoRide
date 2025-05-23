@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { TripSearch } from '../../models/trip-search';
 import { TripList } from '../../models/trip-list';
 import { TripsFilters } from '../../models/trips-filters';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-search-trip',
@@ -21,6 +22,7 @@ export class SearchTripComponent {
 
   trips: TripList[] = []; // Liste des trajets trouvés sans filtres
   filteredTrips: TripList[] = []; // Liste des trajets trouvés avec filtres
+  apiURL = environment.apiURL; // URL de l'API
 
   @Output() tripsFound = new EventEmitter<TripList[]>(); // Émetteur d'événement pour transmettre les trajets trouvés
 

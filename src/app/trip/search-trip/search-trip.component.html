@@ -106,7 +106,7 @@
           <div class="d-flex justify-content-between align-items-center border-top pt-3">
               <div class="d-flex align-items-center justify-content-start">
              
-                <img class="img-picture me-2" [src]="'http://localhost:8000/assets/images/' + trip.driver.picture" />
+                <img class="img-picture me-2" [src]="'apiURL + '/assets/images/' + trip.driver.picture" />
                 <span class="text-muted me-2">{{ trip.driver.firstName }}</span>
                 <i class="fas fa-star text-success me-1"></i>
                 <span class="text-muted">{{ trip.driver.notation }}</span>
